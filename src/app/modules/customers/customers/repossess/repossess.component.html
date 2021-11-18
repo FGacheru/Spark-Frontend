@@ -1,0 +1,161 @@
+<jw-modal id="repossess" width="30%">
+    
+    <p class="mb-2">REPOSSESS </p>
+
+    <form  [formGroup]="repossess_form" (ngSubmit)="submitForm()">
+           
+           
+              
+
+                <div class="mt-3">
+                    <small>NAME OF REPOSSESSOR:</small>
+                 
+                   
+                    <select class="mt-2 form-control form-control-sm opt-value" formControlName="name" *ngIf="!users_loading">
+                        <option *ngFor="let user of users" value="{{user.id}}" required>{{user.username}}</option>
+                    </select>
+    
+    
+                     <!-- Loader -->
+                <span class="linear-background" *ngIf="users_loading"></span>
+
+                <!-- Errors -->
+                <div
+                    *ngIf="repossess_form.controls['name'].invalid && (repossess_form.controls['name'].dirty 
+                    || repossess_form.controls['name'].touched)"
+                    class="alert">
+                    <div *ngIf="repossess_form.controls['name'].errors.required">
+                    <span class="text-danger opt-value">
+                        Field is required <br>
+                    </span>
+                    </div>
+                </div>
+
+                <div *ngIf="api_errors.name">
+
+                    <span class="text-danger opt-value">
+                    {{api_errors.name}}
+                    </span>
+                </div>
+
+                </div>
+     
+
+            
+            <div class="mt-3">
+                <small>NUMBER OF ITEMS:</small>
+                
+                <input class="mt-2 form-control form-control-sm opt-value" type="text" formControlName="items" />
+
+                <!-- Errors -->
+                <div
+                    *ngIf="repossess_form.controls['items'].invalid && (repossess_form.controls['items'].dirty 
+                    || repossess_form.controls['items'].touched)"
+                    class="alert">
+                    <div *ngIf="repossess_form.controls['items'].errors.required">
+                    <span class="text-danger opt-value">
+                        Field is required <br>
+                    </span>
+                    </div>
+                </div>
+
+                <div *ngIf="api_errors.items">
+
+                    <span class="text-danger opt-value">
+                    {{api_errors.items}}
+                    </span>
+                </div>
+            </div>
+
+
+
+            <!--Date-->
+            <div class="mt-3">
+                <small>DATE</small>
+
+                <input class="mt-2 form-control form-control-sm opt-value" type="date" formControlName="date" />
+
+                <!-- Errors -->
+                <div
+                    *ngIf="repossess_form.controls['date'].invalid && (repossess_form.controls['date'].dirty 
+                    || repossess_form.controls['date'].touched)"
+                    class="alert">
+                    <div *ngIf="repossess_form.controls['date'].errors.required">
+                    <span class="text-danger opt-value">
+                        Field is required <br>
+                    </span>
+                    </div>
+                </div>
+
+                <div *ngIf="api_errors.date">
+                    <span class="text-danger opt-value">
+                    {{api_errors.date}}
+                    </span>
+                </div>
+            </div>
+
+             <!---Condition-->
+             <div class="mt-4">
+                <small>Condition Of Goods</small>
+
+                <textarea  cols="4" rows="5" class="mt-2 form-control form-control-sm opt-value" type="description" formControlName="condition" >
+                </textarea>
+
+                <!-- Errors -->
+                <div
+                    *ngIf="repossess_form.controls['condition'].invalid && (repossess_form.controls['condition'].dirty 
+                    || repossess_form.controls['condition'].touched)"
+                    class="alert">
+                    <div *ngIf="repossess_form.controls['condition'].errors.required">
+                    <span class="text-danger opt-value">
+                        Field is required <br>
+                    </span>
+                    </div>
+                </div>
+
+                <div *ngIf="api_errors.condition">
+                    <span class="text-danger opt-value">
+                    {{api_errors.condition}}
+                    </span>
+                </div>
+            </div>
+
+           
+           
+            <!---Description-->
+            <div class="mt-4">
+                <small>DESCRIPTION</small>
+
+                <textarea  cols="4" rows="5" class="mt-2 form-control form-control-sm opt-value" type="description" formControlName="description" >
+                </textarea>
+
+                <!-- Errors -->
+                <div
+                    *ngIf="repossess_form.controls['description'].invalid && (repossess_form.controls['description'].dirty 
+                    || repossess_form.controls['description'].touched)"
+                    class="alert">
+                    <div *ngIf="repossess_form.controls['description'].errors.required">
+                    <span class="text-danger opt-value">
+                        Field is required <br>
+                    </span>
+                    </div>
+                </div>
+
+                <div *ngIf="api_errors.description">
+                    <span class="text-danger opt-value">
+                    {{api_errors.description}}
+                    </span>
+                </div>
+            </div>
+
+            <!--Submit Button-->
+            <div class="row justify-content-end mt-4 pr-3">
+                <app-default-button [outline]="true" text="Cancel" class="mr-4"(action)="cancel()" ></app-default-button>
+
+                <app-default-button text="Submit" ></app-default-button>    
+            </div>
+
+    </form>
+
+
+</jw-modal>

@@ -1,0 +1,341 @@
+<p class="mb-2">INVENTORY - ADD PRICE GROUPS</p>
+
+<app-card>
+    <form action="form-group" [formGroup]="product_config_form" (ngSubmit)="onSubmit()">
+     
+        <!-- first row -->
+         <div class="row justify-content-start">
+
+             <div class="col-2">
+                     <!-- Field -->
+                    <small>Pay Go Provider</small>
+                    <select class="form-control mt-2 mt-2  opt-value" formControlName="pay_go_provider" *ngIf="!pay_go_providers_loading">
+                        <option *ngFor="let provider of pay_go_providers" value="{{provider.id}}" required>{{provider.name}}</option>
+                    </select>
+                    <!-- Loader -->
+                    <span class="linear-background" *ngIf="pay_go_providers_loading"></span>
+                    <!-- Errors -->
+                    <div
+                        *ngIf="product_config_form.controls['pay_go_provider'].invalid && 
+                        (product_config_form.controls['pay_go_provider'].dirty || product_config_form.controls['pay_go_provider'].touched)"
+                        class="alert">
+                        <div *ngIf="product_config_form.controls['pay_go_provider'].errors.required">
+                        <span class="text-danger opt-value">
+                            Field is required <br>
+                        </span>
+                        </div>
+                    </div>
+                    <div *ngIf="api_errors.pay_go_provider">
+
+                        <span class="text-danger opt-value">
+                        {{api_errors.pay_go_provider}}
+                        </span>
+                    </div>
+             </div>
+
+             <div class="col-2">
+                <!-- Field -->
+               <small>Type </small>
+               <select class="form-control mt-2 mt-2  opt-value" formControlName="type">
+                   <option *ngFor="let type of types" value="{{type.value}}" required>{{type.name}}</option>
+               </select>
+
+               <!-- Errors -->
+               <div
+                   *ngIf="product_config_form.controls['type'].invalid && (product_config_form.controls['type'].dirty ||
+                    product_config_form.controls['type'].touched)"
+                   class="alert">
+                   <div *ngIf="product_config_form.controls['type'].errors.required">
+                   <span class="text-danger opt-value">
+                       Field is required <br>
+                   </span>
+                   </div>
+               </div>
+               <div *ngIf="api_errors.type">
+
+                   <span class="text-danger opt-value">
+                   {{api_errors.type}}
+                   </span>
+               </div>
+            </div>
+
+            <div class="col-2">
+                <!-- Purchase Order -->
+                <!-- Field -->
+                <small>Name</small>
+                <input class="form-control mt-2 mt-2  opt-value" formControlName="name" required />
+      
+                <!-- Validation Errors -->
+                <div
+                  *ngIf="product_config_form.controls['name'].invalid && (product_config_form.controls['name'].dirty || product_config_form.controls['name'].touched)"
+                  class="alert">
+                  <div *ngIf="product_config_form.controls['name'].errors.required">
+                    <span class="text-danger opt-value">
+                      Field is required <br>
+                    </span>
+                  </div>
+                </div>
+                <div *ngIf="api_errors.name">
+      
+                  <span class="text-danger opt-value">
+                    {{api_errors.name}}
+                  </span>
+                </div>
+              </div>
+
+         </div>  
+
+         <!-- second row -->
+         <div  *ngIf="product_config_form.controls['type'].value != 'C'" class="row justify-content-start mt-4">
+            <div class="col-2">
+                <!-- Item Count Field -->
+                <!-- Field -->
+                <small>Deposit</small>
+                <input type="number" class="form-control mt-2 mt-2 " formControlName="deposit" (ngModelChange)="calculate()" />
+      
+                <div
+                  *ngIf="product_config_form.controls['deposit'].invalid && (product_config_form.controls['deposit'].dirty || product_config_form.controls['deposit'].touched)"
+                  class="alert">
+                  <div *ngIf="product_config_form.controls['deposit'].errors.required">
+                    <span class="text-danger opt-value">
+                      Field is required <br>
+                    </span>
+                  </div>
+                  <div *ngIf="product_config_form.controls['deposit'].errors.required">
+                    <span class="text-danger opt-value">
+                      Field has to be a number <br>
+                    </span>
+                  </div>
+                </div>
+      
+                <div *ngIf="api_errors.deposit">
+      
+                  <span class="text-danger opt-value">
+                    {{api_errors.deposit}}
+                  </span>
+                </div>
+              </div>
+
+              <div class="col-2">
+                <!-- Item Count Field -->
+                <!-- Field -->
+                <small>No. Of Days</small>
+                <input type="number" class="form-control mt-2 " formControlName="number_of_days" (ngModelChange)="calculate()" />
+      
+                <div
+                  *ngIf="product_config_form.controls['number_of_days'].invalid && (product_config_form.controls['number_of_days'].dirty || product_config_form.controls['number_of_days'].touched)"
+                  class="alert">
+                  <div *ngIf="product_config_form.controls['number_of_days'].errors.required">
+                    <span class="text-danger opt-value">
+                      Field is required <br>
+                    </span>
+                  </div>
+                  <div *ngIf="product_config_form.controls['number_of_days'].errors.required">
+                    <span class="text-danger opt-value">
+                      Field has to be a number <br>
+                    </span>
+                  </div>
+                </div>
+      
+                <div *ngIf="api_errors.number_of_days">
+      
+                  <span class="text-danger opt-value">
+                    {{api_errors.number_of_days}}
+                  </span>
+                </div>
+              </div>
+
+              <div class="col-2" >
+                <!-- Item Count Field -->
+                <!-- Field -->
+                <small>Daily Rate </small>
+                <input type="number" class="form-control mt-2 " formControlName="daily_rate" (ngModelChange)="calculate()" />
+      
+                <div
+                  *ngIf="product_config_form.controls['daily_rate'].invalid && (product_config_form.controls['daily_rate'].dirty || product_config_form.controls['daily_rate'].touched)"
+                  class="alert">
+                  <div *ngIf="product_config_form.controls['daily_rate'].errors.required">
+                    <span class="text-danger opt-value">
+                      Field is required <br>
+                    </span>
+                  </div>
+                  <div *ngIf="product_config_form.controls['daily_rate'].errors.required">
+                    <span class="text-danger opt-value">
+                      Field has to be a number <br>
+                    </span>
+                  </div>
+                </div>
+      
+                <div *ngIf="api_errors.daily_rate">
+      
+                  <span class="text-danger opt-value">
+                    {{api_errors.daily_rate}}
+                  </span>
+                </div>
+              </div>
+
+      
+
+         </div>
+
+         <!-- third rows -->
+         <div *ngIf="product_config_form.controls['type'].value != 'C'" class="row justify-content-start mt-4">
+          
+
+              <div class="col-2" >
+                <!-- Item Count Field -->
+                <!-- Field -->
+                <small>Days To Activate </small>
+                <input type="number" (ngModelChange)="calculate()" class="form-control mt-2 " formControlName="days_in_activation_amount" />
+      
+                <div
+                  *ngIf="product_config_form.controls['days_in_activation_amount'].invalid && (product_config_form.controls['days_in_activation_amount'].dirty || product_config_form.controls['days_in_activation_amount'].touched)"
+                  class="alert">
+                  <div *ngIf="product_config_form.controls['days_in_activation_amount'].errors.required">
+                    <span class="text-danger opt-value">
+                      Field is required <br>
+                    </span>
+                  </div>
+                  <div *ngIf="product_config_form.controls['days_in_activation_amount'].errors.required">
+                    <span class="text-danger opt-value">
+                      Field has to be a number <br>
+                    </span>
+                  </div>
+                </div>
+      
+                <div *ngIf="api_errors.days_in_activation_amount">
+      
+                  <span class="text-danger opt-value">
+                    {{api_errors.days_in_activation_amount}}
+                  </span>
+                </div>
+              </div>
+
+              <div class="col-2" >
+                <!-- Item Count Field -->
+                <!-- Field -->
+                <small>Min Activation Amount </small>
+                <input type="number" class="form-control mt-2 " formControlName="min_activation_amount" readonly/>
+      
+                <div
+                  *ngIf="product_config_form.controls['min_activation_amount'].invalid && (product_config_form.controls['min_activation_amount'].dirty || product_config_form.controls['min_activation_amount'].touched)"
+                  class="alert">
+                  <div *ngIf="product_config_form.controls['min_activation_amount'].errors.required">
+                    <span class="text-danger opt-value">
+                      Field is required <br>
+                    </span>
+                  </div>
+                  <div *ngIf="product_config_form.controls['min_activation_amount'].errors.required">
+                    <span class="text-danger opt-value">
+                      Field has to be a number <br>
+                    </span>
+                  </div>
+                </div>
+      
+                <div *ngIf="api_errors.min_activation_amount">
+      
+                  <span class="text-danger opt-value">
+                    {{api_errors.min_activation_amount}}
+                  </span>
+                </div>
+              </div>  
+              
+              <div class="col-2">
+                <!-- Item Count Field -->
+                <!-- Field -->
+                <small>Unlock Price </small>
+                <input type="number" class="form-control mt-2 " formControlName="unlock_price" readonly />
+      
+                <div
+                  *ngIf="product_config_form.controls['unlock_price'].invalid && (product_config_form.controls['unlock_price'].dirty || product_config_form.controls['unlock_price'].touched)"
+                  class="alert">
+                  <div *ngIf="product_config_form.controls['unlock_price'].errors.required">
+                    <span class="text-danger opt-value">
+                      Field is required <br>
+                    </span>
+                  </div>
+                  <div *ngIf="product_config_form.controls['unlock_price'].errors.required">
+                    <span class="text-danger opt-value">
+                      Field has to be a number <br>
+                    </span>
+                  </div>
+                </div>
+      
+                <div *ngIf="api_errors.unlock_price">
+      
+                  <span class="text-danger opt-value">
+                    {{api_errors.unlock_price}}
+                  </span>
+                </div>
+              </div>
+         </div>
+
+         <!-- row three -->
+         <div class="row justify-content-start mt-4">
+            <div class="col-2">
+                <!-- Item Count Field -->
+                <!-- Field -->
+                <small>Cash Amount</small>
+                <input type="number" class="form-control mt-2 " formControlName="cash_amount" />
+      
+                <div
+                  *ngIf="product_config_form.controls['cash_amount'].invalid && (product_config_form.controls['cash_amount'].dirty || product_config_form.controls['cash_amount'].touched)"
+                  class="alert">
+                  <div *ngIf="product_config_form.controls['cash_amount'].errors.required">
+                    <span class="text-danger opt-value">
+                      Field is required <br>
+                    </span>
+                  </div>
+                  <div *ngIf="product_config_form.controls['cash_amount'].errors.required">
+                    <span class="text-danger opt-value">
+                      Field has to be a number <br>
+                    </span>
+                  </div>
+                </div>
+      
+                <div *ngIf="api_errors.cash_amount">
+      
+                  <span class="text-danger opt-value">
+                    {{api_errors.cash_amount}}
+                  </span>
+                </div>
+              </div>
+         </div>
+
+         <div class="row justify-content-start">
+             <div class="col-8">
+                <small>Description</small>
+                <textarea name="description" class="form-control mt-2 " formControlName="description" 
+                  cols="30" rows="5"></textarea>
+
+                  <div
+                  *ngIf="product_config_form.controls['description'].invalid && 
+                  (product_config_form.controls['description'].dirty || product_config_form.controls['description'].touched)"
+                  class="alert">
+                  <div *ngIf="product_config_form.controls['description'].errors.required">
+                    <span class="text-danger opt-value">
+                      Field is required <br>
+                    </span>
+                  </div>
+                </div>
+      
+                <div *ngIf="api_errors.description">
+      
+                  <span class="text-danger opt-value">
+                    {{api_errors.description}}
+                  </span>
+                </div>
+             </div> 
+         </div>
+
+                 <!--Submit Button-->
+        <div class="row justify-content-end">
+            <app-default-button [outline]="true" text="Cancel" class="mr-4"(action)="clearForm()" ></app-default-button>
+            <app-default-button text="Submit" ></app-default-button>
+          
+     </div>
+
+
+
+</form>
+</app-card>

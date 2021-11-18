@@ -1,0 +1,23 @@
+<!-- Top Section -->
+<div class="row justify-content-between mb-2 pl-4">
+    <p class="mb-2">Customers</p>
+
+    <div>
+        <!-- <app-default-button  text="Add New Customer" class="mr-4" (action)="addUser()"></app-default-button> -->
+        <!-- <app-default-button  text="Sync With Angaza" class="mr-4" ></app-default-button> -->
+        <app-default-button  text="Bulk Actions" class="mr-4" ></app-default-button>
+    </div>
+</div>
+
+<!-- data table -->
+<app-basic-table [titles]="titles" [url]="url" ></app-basic-table>
+
+
+<!-- write off modal -->
+<app-writeoff (closeAction)="cancelModal()" (tableAction)="reloadTable()" [current_store]="current_item" ></app-writeoff>
+
+<!-- Repossess Modal -->
+<app-repossess (closeAction)="cancelModal()" (tableAction)="reloadTable()" [current_store]="current_item" ></app-repossess>
+
+<!-- add customer form -->
+<app-add-customer (closeAction)="cancelModal()" (tableAction)="reloadTable()" ></app-add-customer>

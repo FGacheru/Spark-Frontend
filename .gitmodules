@@ -1,0 +1,3 @@
+[submodule "src/app/shared/ng-multi-select"]
+	path = src/app/shared/ng-multi-select
+	url = git@github.com:sisitech/ng-multi-select.git

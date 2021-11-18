@@ -1,0 +1,164 @@
+<!-- Top Section -->
+<div class="row justify-content-between mb-2 pl-4">
+    <p class="mb-2"> PRODUCT CONFIGURATION </p>
+
+    <div class="row">
+        <app-default-button  text="Add New" class="mr-4" (action)="openAdd()" ></app-default-button>
+        
+        <app-default-button text="Bulk Actions" class="mr-4"></app-default-button>
+    </div>
+</div>
+
+<!--Table-->
+<app-basic-table [titles]="titles" [url]="url"></app-basic-table>
+
+<!-- Add Item Type Modal -->
+<jw-modal id="add-product-type" width="25%">
+    <p class="mb-2">ADD PRODUCT CONFIGURATION</p>
+
+   <form [formGroup]="add_product_type_form" (ngSubmit)="onSubmitAdd()">
+    
+    <!--Name-->
+    <div>
+        <small>NAME</small>
+
+        <input class="mt-2 form-control form-control-sm opt-value" formControlName="name" />
+
+        <!-- Errors -->
+        <div
+            *ngIf="add_product_type_form.controls['name'].invalid && (add_product_type_form.controls['name'].dirty 
+            || add_product_type_form.controls['name'].touched)"
+            class="alert">
+            <div *ngIf="add_product_type_form.controls['name'].errors.required">
+            <span class="text-danger opt-value">
+                Field is required <br>
+            </span>
+            </div>
+        </div>
+
+        <div *ngIf="api_errors.name">
+            <span class="text-danger opt-value">
+            {{api_errors.name}}
+            </span>
+        </div>
+    </div>
+
+     <!--PRICE GROUP-->
+     <div class="mt-3">
+        <small>PRICE GROUP</small>
+
+     
+    
+
+        <select class="mt-2 form-control form-control-sm opt-value" formControlName="price_group_config" *ngIf="!price_group_loading">
+            <option *ngFor="let price_group of price_groups" value="{{price_group.id}}" required>{{price_group.name}}</option>
+        </select>
+        
+
+        <!-- Errors -->
+        <div
+            *ngIf="add_product_type_form.controls['price_group_config'].invalid && (add_product_type_form.controls['price_group_config'].dirty 
+            || add_product_type_form.controls['price_group_config'].touched)"
+            class="alert">
+            <div *ngIf="add_product_type_form.controls['price_group_config'].errors.required">
+            <span class="text-danger opt-value">
+                Field is required <br>
+            </span>
+            </div>
+        </div>
+
+        <div *ngIf="api_errors.price_group_config">
+            <span class="text-danger opt-value">
+            {{api_errors.price_group_config}}
+            </span>
+        </div>
+    </div>
+    
+    <!--Boxes-->
+    <div class="mt-4">
+        <small>BOXES</small>
+        <app-multi-select [parameter]="box_parameter" formControlName="boxes" class="mt-2" ></app-multi-select>
+        
+            <!-- Errors -->
+            <div
+                *ngIf="add_product_type_form.controls['boxes'].invalid && (add_product_type_form.controls['boxes'].dirty 
+                || add_product_type_form.controls['boxes'].touched)"
+                class="alert">
+                <div *ngIf="add_product_type_form.controls['boxes'].errors.required">
+                <span class="text-danger opt-value">
+                    Field is required <br>
+                </span>
+                </div>
+            </div>
+    
+            <div *ngIf="api_errors.boxes">
+                <span class="text-danger opt-value">
+                {{api_errors.boxes}}
+                </span>
+            </div>
+
+    </div>
+
+         <!--DATE-->
+         <div class="mt-3">
+            <small>DATE</small>
+    
+            <input class="mt-2 form-control form-control-sm opt-value" formControlName="date" type="date" />
+    
+            <!-- Errors -->
+            <div
+                *ngIf="add_product_type_form.controls['date'].invalid && (add_product_type_form.controls['date'].dirty 
+                || add_product_type_form.controls['date'].touched)"
+                class="alert">
+                <div *ngIf="add_product_type_form.controls['date'].errors.required">
+                <span class="text-danger opt-value">
+                    Field is required <br>
+                </span>
+                </div>
+            </div>
+    
+            <div *ngIf="api_errors.date">
+                <span class="text-danger opt-value">
+                {{api_errors.date}}
+                </span>
+            </div>
+        </div>
+
+         <!---Description-->
+         <div class="mt-3">
+            <small>DESCRIPTION</small>
+
+            <textarea  cols="4" rows="8" class="mt-2 form-control form-control-sm opt-value" type="description" formControlName="description" >
+            </textarea>
+
+            <!-- Errors -->
+            <div
+                *ngIf="add_product_type_form.controls['description'].invalid && (add_product_type_form.controls['description'].dirty 
+                || add_product_type_form.controls['description'].touched)"
+                class="alert">
+                <div *ngIf="add_product_type_form.controls['description'].errors.required">
+                <span class="text-danger opt-value">
+                    Field is required <br>
+                </span>
+                </div>
+            </div>
+
+            <div *ngIf="api_errors.description">
+                <span class="text-danger opt-value">
+                {{api_errors.description}}
+                </span>
+            </div>
+        </div>
+
+
+     <!--Submit Button-->
+     <div class="row justify-content-end mt-4 pr-3">
+        <app-default-button [outline]="true" text="Cancel" class="mr-4"(action)="cancel()" ></app-default-button>
+
+        <app-default-button text="Submit" (action)="onSubmitAdd()" ></app-default-button>
+        
+     </div>
+   </form>
+    
+
+</jw-modal>

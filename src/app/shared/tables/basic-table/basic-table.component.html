@@ -1,0 +1,33 @@
+<div style="background-color: white;">
+
+    <table *ngIf="!loading" class="table table-hover table-sm mt-0 pt-0 ml- pl-0 " style="background-color: white;" >
+        <thead>
+            <tr>
+                <th *ngFor="let title of titles">
+                    <app-basic-table-header [header]="title" [filters]="filters" > </app-basic-table-header>    
+                </th>
+            </tr>
+        </thead>
+        <!--todo set loading-->
+        <tbody>
+           
+            <tr *ngFor="let row of results">
+                <td *ngFor="let title of titles" class="text-center p-1">
+                    <app-basic-table-cell
+                       [header]="title"
+                       [row]="row"
+                    ></app-basic-table-cell>
+                </td>
+            </tr>
+
+
+        </tbody>
+    </table>
+
+
+    <app-mypagination [selectedPage]="page" [pageSize]="page_size" (onPageSelect)="onPageSelect($event)"
+    [resultsMeta]="resultsMeta" *ngIf="!loading"></app-mypagination>
+
+    <app-table-loader *ngIf="loading" ></app-table-loader>
+
+</div>

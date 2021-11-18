@@ -1,0 +1,33 @@
+@import "~@ng-select/ng-select/themes/default.theme.css";
+body,html{
+   background-color: #EDECEE;
+   font-family: "OpenSans", Arial, Helvetica, sans-serif;
+}
+//containers
+ .bg-container{
+    background-color: #EDECEE;
+ }
+
+ .container-view-height{
+    height: 100vh !important;
+ }
+ 
+.container-minus-header{
+    height: calc(100vh - 60px) !important;
+}
+
+ //fonts
+ .auth-mini-header{
+   font-size: 12px;
+   font-weight: bolder;
+}
+
+.mini-grey-text{
+   font-size: 12px;
+   color: grey;
+}
+
+@font-face {
+   font-family: "OpenSans";
+   src: local("OpenSans"), url(./assets/fonts/OpenSans-Regular.ttf) format("truetype");
+}

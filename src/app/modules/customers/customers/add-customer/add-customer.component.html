@@ -1,0 +1,278 @@
+<jw-modal id="add-customer" width="30%">
+    <p>ADD CUSTOMER</p>
+  
+    <form  [formGroup]="add_customer_form" (ngSubmit)="submit()">
+        
+        <!-- name -->
+      <div class="row align-items-center">
+          <div class="col-4"> <small><b>NAME</b></small> </div>
+          <div class="col-8">
+              <input class="mt-2 form-control form-control-sm opt-value" type="text" formControlName="name" />
+          </div>
+       </div>
+       
+       <!--Serial Number-->
+       <div class="row align-items-center">
+          <div class="col-4"> <small><b>ID NUMBER</b></small> </div>
+          <div class="col-8">
+              <input class="mt-2 form-control form-control-sm opt-value" type="text" formControlName="id_number" />
+  
+              <div
+                  *ngIf="add_customer_form.controls['id_number'].invalid && (add_customer_form.controls['id_number'].dirty 
+                  || add_customer_form.controls['id_number'].touched)"
+                  class="alert">
+                  <div *ngIf="add_customer_form.controls['id_number'].errors.required">
+                  <span class="text-danger opt-value">
+                      Field is required <br>
+                  </span>
+                  </div>
+              </div>
+  
+              <div *ngIf="api_errors.id_number">
+                  <span class="text-danger opt-value">
+                  {{api_errors.id_number}}
+                  </span>
+              </div>
+          </div>
+       </div>
+  
+       <!--REGISTRATION DATE -->
+       <div class="row align-items-center">
+          <div class="col-4"> <small><b>REGISTRATION DATE</b></small> </div>
+          <div class="col-8">
+              <input class="mt-2 form-control form-control-sm opt-value" type="date" formControlName="registration_date" />
+  
+              <div
+                  *ngIf="add_customer_form.controls['registration_date'].invalid && (add_customer_form.controls['registration_date'].dirty 
+                  || add_customer_form.controls['registration_date'].touched)"
+                  class="alert">
+                  <div *ngIf="add_customer_form.controls['registration_date'].errors.required">
+                  <span class="text-danger opt-value">
+                      Field is required <br>
+                  </span>
+                  </div>
+              </div>
+  
+              <div *ngIf="api_errors.registration_date">
+                  <span class="text-danger opt-value">
+                  {{api_errors.registration_date}}
+                  </span>
+              </div>
+          </div>
+       </div>
+  
+           <!--PHONE NUMBER -->
+           <div class="row align-items-center">
+              <div class="col-4"> <small><b>PHONE NUMBER</b></small> </div>
+              <div class="col-8">
+                <input class="mt-2 form-control form-control-sm opt-value" formControlName="primary_phone" />
+      
+                  <div
+                      *ngIf="add_customer_form.controls['primary_phone'].invalid && (add_customer_form.controls['primary_phone'].dirty 
+                      || add_customer_form.controls['primary_phone'].touched)"
+                      class="alert">
+                      <div *ngIf="add_customer_form.controls['primary_phone'].errors.required">
+                      <span class="text-danger opt-value">
+                          Field is required <br>
+                      </span>
+                      </div>
+                  </div>
+      
+                  <div *ngIf="api_errors.primary_phone">
+                      <span class="text-danger opt-value">
+                      {{api_errors.primary_phone}}
+                      </span>
+                  </div>
+              </div>
+           </div>
+           
+           <!--Region-->
+           <div class="row align-items-center">
+              <div class="col-4"> <small><b>REGION</b></small> </div>
+              <div class="col-8">
+                <input class="mt-2 form-control form-control-sm opt-value" formControlName="region" />
+       
+                  <div
+                      *ngIf="add_customer_form.controls['region'].invalid && (add_customer_form.controls['region'].dirty 
+                      || add_customer_form.controls['region'].touched)"
+                      class="alert">
+                      <div *ngIf="add_customer_form.controls['region'].errors.required">
+                      <span class="text-danger opt-value">
+                          Field is required <br>
+                      </span>
+                      </div>
+                  </div>
+      
+                  <div *ngIf="api_errors.region">
+                      <span class="text-danger opt-value">
+                      {{api_errors.region}}
+                      </span>
+                  </div>
+              </div>
+           </div>
+           
+
+                            <!--VILLAGE-->
+                  <div class="row align-items-center">
+                      <div class="col-4"> <small><b>VILLAGE</b></small> </div>
+                      <div class="col-8">
+                          <input class="mt-2 form-control form-control-sm opt-value" type="text" formControlName="village" />
+              
+                          <div
+                              *ngIf="add_customer_form.controls['village'].invalid && (add_customer_form.controls['village'].dirty 
+                              || add_customer_form.controls['village'].touched)"
+                              class="alert">
+                              <div *ngIf="add_customer_form.controls['village'].errors.required">
+                              <span class="text-danger opt-value">
+                                  Field is required <br>
+                              </span>
+                              </div>
+                          </div>
+              
+                          <div *ngIf="api_errors.village">
+                              <span class="text-danger opt-value">
+                              {{api_errors.village}}
+                              </span>
+                          </div>
+                      </div>
+                   </div>
+  
+                   <!--Paygo id-->
+                   <div class="row align-items-center">
+                      <div class="col-4"> <small><b>PAYGO ID</b></small> </div>
+                      <div class="col-8">
+                          <input class="mt-2 form-control form-control-sm opt-value" type="text" formControlName="paygo_id" />
+              
+                          <div
+                              *ngIf="add_customer_form.controls['paygo_id'].invalid && (add_customer_form.controls['paygo_id'].dirty 
+                              || add_customer_form.controls['paygo_id'].touched)"
+                              class="alert">
+                              <div *ngIf="add_customer_form.controls['paygo_id'].errors.required">
+                              <span class="text-danger opt-value">
+                                  Field is required <br>
+                              </span>
+                              </div>
+                          </div>
+              
+                          <div *ngIf="api_errors.paygo_id">
+                              <span class="text-danger opt-value">
+                              {{api_errors.paygo_id}}
+                              </span>
+                          </div>
+                      </div>
+                   </div>
+
+                     <!--contract number-->
+                     <div class="row align-items-center">
+                        <div class="col-4"> <small><b>CONTRACT NUMBER</b></small> </div>
+                        <div class="col-8">
+                            <input class="mt-2 form-control form-control-sm opt-value" type="text" formControlName="contract_number" />
+                
+                            <div
+                                *ngIf="add_customer_form.controls['contract_number'].invalid && (add_customer_form.controls['contract_number'].dirty 
+                                || add_customer_form.controls['contract_number'].touched)"
+                                class="alert">
+                                <div *ngIf="add_customer_form.controls['contract_number'].errors.required">
+                                <span class="text-danger opt-value">
+                                    Field is required <br>
+                                </span>
+                                </div>
+                            </div>
+                
+                            <div *ngIf="api_errors.contract_number">
+                                <span class="text-danger opt-value">
+                                {{api_errors.contract_number}}
+                                </span>
+                            </div>
+                        </div>
+                     </div>
+  
+                     
+                       <!--min salary-->
+                   <div class="row align-items-center">
+                    <div class="col-4"> <small><b>MIN SALARY</b></small> </div>
+                    <div class="col-8">
+                        <input class="mt-2 form-control form-control-sm opt-value" type="text" formControlName="min_salary" />
+            
+                        <div
+                            *ngIf="add_customer_form.controls['min_salary'].invalid && (add_customer_form.controls['min_salary'].dirty 
+                            || add_customer_form.controls['min_salary'].touched)"
+                            class="alert">
+                            <div *ngIf="add_customer_form.controls['min_salary'].errors.required">
+                            <span class="text-danger opt-value">
+                                Field is required <br>
+                            </span>
+                            </div>
+                        </div>
+            
+                        <div *ngIf="api_errors.min_salary">
+                            <span class="text-danger opt-value">
+                            {{api_errors.min_salary}}
+                            </span>
+                        </div>
+                    </div>
+                 </div>
+
+
+                   <!--MAX SALARY-->
+                   <div class="row align-items-center">
+                    <div class="col-4"> <small><b>MAX SALARY</b></small> </div>
+                    <div class="col-8">
+                        <input class="mt-2 form-control form-control-sm opt-value" type="text" formControlName="max_salary" />
+            
+                        <div
+                            *ngIf="add_customer_form.controls['max_salary'].invalid && (add_customer_form.controls['max_salary'].dirty 
+                            || add_customer_form.controls['max_salary'].touched)"
+                            class="alert">
+                            <div *ngIf="add_customer_form.controls['max_salary'].errors.required">
+                            <span class="text-danger opt-value">
+                                Field is required <br>
+                            </span>
+                            </div>
+                        </div>
+            
+                        <div *ngIf="api_errors.max_salary">
+                            <span class="text-danger opt-value">
+                            {{api_errors.max_salary}}
+                            </span>
+                        </div>
+                    </div>
+                 </div>
+
+
+                  <!--occupation-->
+                  <div class="row align-items-center">
+                    <div class="col-4"> <small><b>OCCUPATION</b></small> </div>
+                    <div class="col-8">
+                        <input class="mt-2 form-control form-control-sm opt-value" type="text" formControlName="occupation" />
+            
+                        <div
+                            *ngIf="add_customer_form.controls['occupation'].invalid && (add_customer_form.controls['occupation'].dirty 
+                            || add_customer_form.controls['occupation'].touched)"
+                            class="alert">
+                            <div *ngIf="add_customer_form.controls['occupation'].errors.required">
+                            <span class="text-danger opt-value">
+                                Field is required <br>
+                            </span>
+                            </div>
+                        </div>
+            
+                        <div *ngIf="api_errors.occupation">
+                            <span class="text-danger opt-value">
+                            {{api_errors.occupation}}
+                            </span>
+                        </div>
+                    </div>
+                 </div>
+
+      
+      <!--Submit Button-->
+      <div class="row justify-content-end mt-4 pr-3">
+          <app-default-button [outline]="true" text="Cancel" class="mr-4"(action)="cancel()" ></app-default-button>
+  
+          <app-default-button text="Submit" ></app-default-button>    
+      </div>
+  
+    </form>
+  
+  </jw-modal>    

@@ -1,0 +1,22 @@
+<div class="p-3" style="background-color:white;">
+    <div class="row pl-4 pt-0" style="align-items: start !important;">
+      <fa-icon (click)="toggleShow()"  [icon]="opened ? faUp : faDown" size="2x" > </fa-icon> <p class="ml-4" style="font-size: 85%;font-weight: 600;">{{data.title}}</p>
+    </div>
+
+    <table *ngIf="opened" class="table table-hover table-sm mt-0 pt-0 ml- pl-0">
+        <thead>
+           <th *ngFor="let head of data.fields" style="font-size: 80%;font-weight: 500;">{{ head.name }}</th>
+        </thead>
+        <tbody>
+             <tr *ngFor="let row of history">
+                 <td style="font-size: 80%;font-weight: 400;" *ngFor="let head of data.fields">
+                    {{ cellValue(head.field,row) }} 
+                 </td> 
+                <!-- <app-basic-table-cell
+                       [header]="title"
+                       [row]="row"
+                    ></app-basic-table-cell> -->
+             </tr>
+        </tbody>
+    </table>
+</div>

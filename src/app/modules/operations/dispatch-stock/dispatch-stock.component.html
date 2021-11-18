@@ -1,0 +1,15 @@
+
+<!-- Top Section -->
+<div class="row justify-content-between mb-2 pl-4">
+  <p class="mb-2">DISPATCH STOCK</p>
+
+  <div>
+
+    <app-default-button  text="DISPATCH" class="mr-4" (action)="dispatchItems()"></app-default-button>
+  </div>
+</div>
+
+<!-- data table -->
+<app-checked-table [titles]="titles" [url]="url" ></app-checked-table>
+
+<app-dispatch-items  (closeAction)="cancelModal()" (tableAction)="reloadTable()" [current_item]="current_item"  [selected_items]='selected_items'></app-dispatch-items>

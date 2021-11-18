@@ -1,0 +1,13 @@
+.btn-primary{
+    background-color: #245FB9 !important;
+}
+
+.btn-outline-primary{
+    color: #245FB9 !important;
+    border-color: #245FB9 !important;
+
+    &:hover{
+        color: white !important;
+        background-color: #245FB9 !important;
+    }
+}

@@ -1,0 +1,13 @@
+
+@import "../forgot/forgot.component.scss";
+
+.form-control-icon {
+    top: 70%;
+}
+.ng-invalid .ng-touched{
+    border: 0.1em solid red;
+  }
+  
+  .ng-touched .ng-valid {
+    border: 0.1em solid green;
+  }

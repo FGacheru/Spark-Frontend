@@ -1,0 +1,21 @@
+*{
+    color: black;
+}
+.page-item {
+    cursor: pointer;
+}
+
+.item-count {
+    font-family: "MuseoSans-500", Helvetica, Arial, serif;
+    font-size: 11px;
+}
+
+.page-link {
+    font-family: "MuseoSans-500", Helvetica, Arial, serif;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.page-item.active .page-link{
+    background-color: #245FB9  !important;
+}

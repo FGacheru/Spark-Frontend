@@ -1,0 +1,7 @@
+version: "3.7"
+services:
+    spark:
+       container_name: spark
+       build: .
+       ports:
+           - "4200:80"

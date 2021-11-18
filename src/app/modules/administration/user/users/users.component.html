@@ -1,0 +1,23 @@
+<!-- Top Section -->
+<div class="row justify-content-between mb-2 pl-4">
+    <p class="mb-2">User Administration</p>
+
+    <div>
+        <app-default-button (click)="addUser()" text="Add New User" class="mr-4" ></app-default-button>
+        <app-default-button  text="Create User Role" class="mr-4" ></app-default-button>
+        <app-default-button  text="Bulk Actions" class="mr-4" ></app-default-button>
+    </div>
+</div>
+
+<!-- data table -->
+<app-basic-table [titles]="titles" [url]="url" ></app-basic-table>
+
+
+<!-- add user modal -->
+<app-add-user (closeAction)="cancelModal()" (tableAction)="reloadTable()" ></app-add-user>
+
+<app-edit-user (closeAction)="cancelModal()" (tableAction)="reloadTable()" [current_item]="current_store"></app-edit-user>
+
+<!-- Repossess Modal -->
+<!-- <app-add-group (closeAction)="cancelModal()" (tableAction)="reloadTable()" [current_store]="current_item" ></app-add-group> -->
+

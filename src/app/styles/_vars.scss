@@ -1,0 +1,33 @@
+/*****************************/
+/********** colors ***********/
+/*****************************/
+
+$color_background: #ffffff;
+$color-background-card: #ffffff;
+$color_background-inputs: #ffffff;
+$color_topbar: #ffffff;
+$color_buttons: #4d4d4d;
+$color_primary: #036FB6;
+$color_secondary: #e57c2c;
+$color_tertiary: #12263f;
+$color_warning: #e63757;
+$color_success: #007700;
+$color_white: #ffffff;
+$color_black: #000;
+$color_lightgrey: rgba($color_white, 0.5);
+$color_lightergrey: rgba($color_white, 0.25);
+$color_forms_border: #707070;
+$color_form_placeholder: #b1c2d9;
+$color_links_buttons: #036fb6;
+$color_subsubtitle: #7e7e7e;
+$color_title: #535252;
+$color_subtitle: #B2B1B1;
+$color_navbar_background: $color_background;
+$color_navbar_border: #a9a8a8;
+
+$color_title_default: #535252;
+/* Add reusable animations*/
+
+/* Accomodate iphone 11+*/
+$iphone-safespace: rem-calc(44);
+$commonGutter: 3rem;

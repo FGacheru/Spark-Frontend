@@ -1,0 +1,106 @@
+<!-- Top Section -->
+<div class="row justify-content-between mb-2 pl-4">
+    <p class="mb-2">ITEM CONFIGURATIONS</p>
+
+    <div>
+        <app-default-button  text="Add New" class="mr-4" (action)="openEdit()" ></app-default-button>
+    </div>
+</div>
+
+<!--Table-->
+<app-basic-table [titles]="titles" [url]="url" ></app-basic-table>
+
+
+<!-- Add Item Type Modal -->
+<jw-modal id="add-item-config" width="30%">
+
+    <p class="mb-2">ADD ITEM CONFIGURATION</p>
+ 
+    <form [formGroup]="add_item_config_form" (ngSubmit)="onSubmitAdd()" >
+        
+        <!--Item Type Name-->
+        <div>
+            <small>NAME</small>
+            <input class="mt-2 form-control form-control-sm opt-value" formControlName="name" />
+
+            <!-- Errors -->
+            <div
+                *ngIf="add_item_config_form.controls['name'].invalid && (add_item_config_form.controls['name'].dirty 
+                || add_item_config_form.controls['name'].touched)"
+                class="alert">
+                <div *ngIf="add_item_config_form.controls['name'].errors.required">
+                <span class="text-danger opt-value">
+                    Field is required <br>
+                </span>
+                </div>
+            </div>
+
+            <div *ngIf="api_errors.name">
+                <span class="text-danger opt-value">
+                {{api_errors.name}}
+                </span>
+            </div>
+        </div>
+
+        <!-- Item Type Configuration-->
+        <div class="mt-4">
+            <small>ITEM TYPE</small>
+
+            <app-multi-select formControlName="type_tmp" [parameter]="item_type_config"></app-multi-select>
+
+            <!-- Errors -->
+            <div
+                *ngIf="add_item_config_form.controls['type_tmp'].invalid && (add_item_config_form.controls['type_tmp'].dirty 
+                || add_item_config_form.controls['type_tmp'].touched)"
+                class="alert">
+                <div *ngIf="add_item_config_form.controls['type_tmp'].errors.required">
+                <span class="text-danger opt-value">
+                    Field is required <br>
+                </span>
+                </div>
+            </div>
+
+            <div *ngIf="api_errors.type">
+                <span class="text-danger opt-value">
+                {{api_errors.type}}
+                </span>
+            </div>
+        </div>
+
+        <!---Description-->
+        <div class="mt-4">
+            <small>DESCRIPTION</small>
+
+            <textarea  cols="4" rows="8" class="mt-2 form-control form-control-sm opt-value" type="description" formControlName="description" >
+            </textarea>
+
+            <!-- Errors -->
+            <div
+                *ngIf="add_item_config_form.controls['description'].invalid && (add_item_config_form.controls['description'].dirty 
+                || add_item_config_form.controls['description'].touched)"
+                class="alert">
+                <div *ngIf="add_item_config_form.controls['description'].errors.required">
+                <span class="text-danger opt-value">
+                    Field is required <br>
+                </span>
+                </div>
+            </div>
+
+            <div *ngIf="api_errors.description">
+                <span class="text-danger opt-value">
+                {{api_errors.description}}
+                </span>
+            </div>
+        </div>
+
+         <!--Submit Button-->
+         <div class="row justify-content-end mt-4 pr-3">
+            <app-default-button [outline]="true" text="Cancel" class="mr-4"(action)="cancel()" ></app-default-button>
+
+            <app-default-button text="Submit" ></app-default-button>
+            
+         </div>
+
+    </form> 
+
+</jw-modal>

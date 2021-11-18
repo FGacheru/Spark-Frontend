@@ -1,0 +1,7 @@
+<button *ngIf="outline" (click)="doAction()" type="button" class="btn btn-outline-primary">
+    {{ text }}
+</button>
+
+<button *ngIf="!outline" (click)="doAction()" type="submit" class="btn btn-primary">
+  {{ text }}
+</button>

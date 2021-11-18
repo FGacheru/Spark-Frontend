@@ -1,0 +1,114 @@
+<jw-modal id="update-repair" width="50%">
+
+  <p class="mb-2">UPDATE REPAIR</p>
+
+  <form  [formGroup]="ticket_form" (ngSubmit)="submitForm()">
+    <div class='row'>
+
+      <div class='col-4'>
+
+        <div class='mt-3'>
+          <small>JOBS DONE</small>
+
+          <select class="mt-2 form-control form-control-sm opt-value" formControlName="technician" *ngIf="!users_loading">
+            <option *ngFor="let user of users" value="{{user.id}}" required>{{user.username}}</option>
+          </select>
+        </div>
+        <div class="mt-3">
+          <small>TECHNICIAN ASSIGNED:</small>
+
+
+          <select class="mt-2 form-control form-control-sm opt-value" formControlName="technician" *ngIf="!users_loading">
+            <option *ngFor="let user of users" value="{{user.id}}" required>{{user.username}}</option>
+          </select>
+
+
+          <!-- Loader -->
+          <span class="linear-background" *ngIf="users_loading"></span>
+
+          <!-- Errors -->
+          <div
+            *ngIf="ticket_form.controls['technician'].invalid && (ticket_form.controls['technician'].dirty
+                || ticket_form.controls['technician'].touched)"
+            class="alert">
+            <div *ngIf="ticket_form.controls['technician'].errors.required">
+                <span class="text-danger opt-value">
+                    Field is required <br>
+                </span>
+            </div>
+          </div>
+
+          <div *ngIf="api_errors.technician">
+
+                <span class="text-danger opt-value">
+                {{api_errors.technician}}
+                </span>
+          </div>
+
+        </div>
+
+      </div>
+      <div class='col-8'>
+        <div class='row'>
+          <div class='col-6'>
+          <div class='mt-3'>
+            <small>Part Name</small>
+
+            <select class="mt-2 form-control form-control-sm opt-value" formControlName="technician" *ngIf="!users_loading">
+              <option *ngFor="let user of users" value="{{user.id}}" required>{{user.username}}</option>
+            </select>
+          </div>
+          </div>
+          <div class='col-6'>
+            <div class='mt-3'>
+              <small>Warranty Status</small>
+
+              <select class="mt-2 form-control form-control-sm opt-value" formControlName="technician" *ngIf="!users_loading">
+                <option *ngFor="let user of users" value="{{user.id}}" required>{{user.username}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <!---Description-->
+        <div class="mt-4">
+          <small>PROBLEM DESCRIPTION</small>
+
+          <textarea  cols="4" rows="5" class="mt-2 form-control form-control-sm opt-value" type="description" formControlName="problem_description" >
+                </textarea>
+
+          <!-- Errors -->
+          <div
+            *ngIf="ticket_form.controls['problem_description'].invalid && (ticket_form.controls['problem_description'].dirty
+                    || ticket_form.controls['problem_description'].touched)"
+            class="alert">
+            <div *ngIf="ticket_form.controls['problem_description'].errors.required">
+                    <span class="text-danger opt-value">
+                        Field is required <br>
+                    </span>
+            </div>
+          </div>
+
+          <div *ngIf="api_errors.problem_description">
+                    <span class="text-danger opt-value">
+                    {{api_errors.problem_description}}
+                    </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <!--Submit Button-->
+    <div class="row justify-content-end mt-4 pr-3">
+      <app-default-button [outline]="true" text="Cancel" class="mr-4"(action)="cancel()" ></app-default-button>
+
+      <app-default-button text="Submit" ></app-default-button>
+    </div>
+
+  </form>
+
+
+</jw-modal>

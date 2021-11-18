@@ -1,0 +1,25 @@
+<small *ngIf='!isAction && !isCheckBox' class='p-0'>{{ cellValue }}</small>
+
+
+
+<div *ngIf='isCheckBox'>
+  <input class='form-check-input primary' (change)='selectRow($event, "select")' type='checkbox'  id='flexCheckDefault'>
+</div>
+
+<div *ngIf='isAction' class='dropdown dropleft'>
+  <fa-icon [icon]='faDropDown' id='dropdownMenuButton' data-toggle='dropdown'></fa-icon>
+
+  <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+    <div *ngFor="let action of header['actions']" class='dropdown-item'>
+      <a style='color: black;' *ngIf='isObject(action);else actionTemp'
+         [routerLink]="[action['link']+row.id]">{{ action['name'] }}</a>
+      <ng-template #actionTemp>
+        <a style='color: black;' (click)='actionDropDown($event,action)' href='#'>{{ action }}</a>
+      </ng-template>
+    </div>
+
+
+  </div>
+</div>
+
+

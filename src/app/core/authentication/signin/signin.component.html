@@ -1,0 +1,83 @@
+<div class="card p-4" style="width: 450px;">
+  
+  <div class="card-body">
+    
+    <div class="col-12 d-flex justify-content-center">
+      <img src="assets/img/logo/spark.png" height="90px">
+    </div>
+    
+    <h6 class="auth-mini-header mt-3">LOGIN</h6>
+    <p class="mini-grey-text">Login to access you account</p>
+    
+    <span *ngIf="hasError" class="text-danger small">{{error}}</span>
+    
+
+    <form class="authentication__form" [formGroup]="signinForm" (ngSubmit)="signIn()">
+      
+      <!--Email Form Group -->
+      <div class="form-group">
+        <!-- <label class="form-label" for="signin-email">Email Address</label> -->
+        <input aria-label="username" id="signin-email" type="text" class="form-control"
+          formControlName="username" placeholder="Username" />
+        
+         <!-- Errors --> 
+        <div *ngIf="submitted && f.username.errors" class="text-danger small"
+          [ngClass]="{'form.is-invalid': submitted && f.username.errors}">
+          <div *ngIf="f.username.errors.required">Email address is required</div>
+          <div *ngIf="f.username.errors.pattern || f.username.errors.email">Enter a valid email</div>
+        </div>
+
+      </div>
+      
+
+      <!--Password Form Group -->
+      <div class="form-group mt-4"> 
+
+        <input aria_label="password" id="password" formControlName="password" type={{passwordType}}
+          class="form-control form-control-appended" placeholder="Password" />
+
+        <div *ngIf="submitted && f.password.errors" class="text-danger small"
+          [ngClass]="{'form.is-invalid': submitted && f.password.errors}">
+          <div *ngIf="f.password.errors.required">Password is required</div>
+        </div>
+
+        <!-- Errors -->
+        <div (click)="toggleShowPassword()" class="form-control-icon password"
+          [ngClass]="{'is--hidden': submitted && f.password.errors}">
+          <span class="">
+            <i class="fa fa-eye" *ngIf="togglePasswordShow"></i>
+            <i class="fa fa-eye-slash" *ngIf="!togglePasswordShow"></i>
+          </span>
+        </div>
+
+      </div>
+
+      <!-- Remember me-->
+      <div class="form-group form-check">
+        <input aria_label="Remember me" type="checkbox" formControlName="remember_me" id="rememberMe"
+          class="form-check-input" />
+        <label class="form-label" for="rememberMe" class="mini-grey-text">Remember Me</label>
+      </div>
+      
+      <!--Forgot Password -->
+      <div class="row justify-content-end" >
+        <a [routerLink]="['/forgot-password']" class="form-text form-link forgot small"> Forgot password? </a>
+      </div>
+
+      <!--Login Button-->
+      <div class="row justify-content-end mt-4">
+        <button [attr.disabled]="loading ? true: null" type="submit" class="btn btn btn-primary mb-3 lift" style="width: 120px;">
+          <span class="spark-text has--loading" [ngClass]="{'has--loading': loading}">
+            {{ loading ? 'Signing In' : 'Login' }}
+          </span>
+        </button>
+      </div>
+
+
+      
+    </form>
+
+
+  </div>
+
+</div>

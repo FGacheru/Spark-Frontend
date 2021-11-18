@@ -1,0 +1,259 @@
+<jw-modal id="edit-box" width="30%">
+  <p>EDIT BOX</p>
+
+  <form  [formGroup]="edit_box_form" (ngSubmit)="submit()">
+
+    <div class="row align-items-center">
+      <div class="col-4"> <small><b>PAYGO ID</b></small> </div>
+      <div class="col-8">
+        <input class="mt-2 form-control form-control-sm opt-value" type="text" formControlName="paygo_id" />
+      </div>
+    </div>
+
+    <!--Serial Number-->
+    <div class="row align-items-center">
+      <div class="col-4"> <small><b>SERIAL NUMBER</b></small> </div>
+      <div class="col-8">
+        <input class="mt-2 form-control form-control-sm opt-value" type="text" formControlName="serial" />
+
+        <div
+          *ngIf="edit_box_form.controls['serial'].invalid && (edit_box_form.controls['serial'].dirty
+                || edit_box_form.controls['serial'].touched)"
+          class="alert">
+          <div *ngIf="edit_box_form.controls['serial'].errors.required">
+                <span class="text-danger opt-value">
+                    Field is required <br>
+                </span>
+          </div>
+        </div>
+
+        <div *ngIf="api_errors.serial">
+                <span class="text-danger opt-value">
+                {{api_errors.serial}}
+                </span>
+        </div>
+      </div>
+    </div>
+
+    <!--CHECK IN DATE -->
+    <div class="row align-items-center">
+      <div class="col-4"> <small><b>CHECK IN DATE</b></small> </div>
+      <div class="col-8">
+        <input class="mt-2 form-control form-control-sm opt-value" type="date" formControlName="checkin_date" />
+
+        <div
+          *ngIf="edit_box_form.controls['checkin_date'].invalid && (edit_box_form.controls['checkin_date'].dirty
+                || edit_box_form.controls['checkin_date'].touched)"
+          class="alert">
+          <div *ngIf="edit_box_form.controls['checkin_date'].errors.required">
+                <span class="text-danger opt-value">
+                    Field is required <br>
+                </span>
+          </div>
+        </div>
+
+        <div *ngIf="api_errors.checkin_date">
+                <span class="text-danger opt-value">
+                {{api_errors.checkin_date}}
+                </span>
+        </div>
+      </div>
+    </div>
+
+    <!--CHECK IN WARE HOUSE -->
+    <div class="row align-items-center">
+      <div class="col-4"> <small><b>CHECK IN WAREHOUSE </b></small> </div>
+      <div class="col-8">
+        <select class="mt-2 form-control form-control-sm opt-value" type="text" formControlName="checkin_warehouse">
+          <option  *ngFor="let store of stores"  value="{{store.name}}">{{ store.name }}</option>
+        </select>
+
+        <div
+          *ngIf="edit_box_form.controls['checkin_warehouse'].invalid && (edit_box_form.controls['checkin_warehouse'].dirty
+                    || edit_box_form.controls['checkin_warehouse'].touched)"
+          class="alert">
+          <div *ngIf="edit_box_form.controls['checkin_warehouse'].errors.required">
+                    <span class="text-danger opt-value">
+                        Field is required <br>
+                    </span>
+          </div>
+        </div>
+
+        <div *ngIf="api_errors.checkin_warehouse">
+                    <span class="text-danger opt-value">
+                    {{api_errors.checkin_warehouse}}
+                    </span>
+        </div>
+      </div>
+    </div>
+
+    <!--Inventory Status-->
+    <div class="row align-items-center">
+      <div class="col-4"> <small><b>INVENTORY STATUS</b></small> </div>
+      <div class="col-8">
+        <select class="mt-2 form-control form-control-sm opt-value" type="text" formControlName="inventory_status" >
+          <option *ngFor="let inv of inventory_statues" value="{{inv}}">{{inv}}</option>
+        </select>
+
+        <div
+          *ngIf="edit_box_form.controls['inventory_status'].invalid && (edit_box_form.controls['inventory_status'].dirty
+                    || edit_box_form.controls['inventory_status'].touched)"
+          class="alert">
+          <div *ngIf="edit_box_form.controls['inventory_status'].errors.required">
+                    <span class="text-danger opt-value">
+                        Field is required <br>
+                    </span>
+          </div>
+        </div>
+
+        <div *ngIf="api_errors.inventory_status">
+                    <span class="text-danger opt-value">
+                    {{api_errors.inventory_status}}
+                    </span>
+        </div>
+      </div>
+    </div>
+
+
+    <!--Ownership Status-->
+    <div class="row align-items-center">
+      <div class="col-4"> <small><b>OWNERSHIP STATUS</b></small> </div>
+      <div class="col-8">
+        <select class="mt-2 form-control form-control-sm opt-value" type="text" formControlName="ownership_status">
+          <option *ngFor="let own of ownerships" value="{{own}}">{{own}}</option>
+        </select>
+
+        <div
+          *ngIf="edit_box_form.controls['ownership_status'].invalid && (edit_box_form.controls['ownership_status'].dirty
+                    || edit_box_form.controls['ownership_status'].touched)"
+          class="alert">
+          <div *ngIf="edit_box_form.controls['ownership_status'].errors.required">
+                    <span class="text-danger opt-value">
+                        Field is required <br>
+                    </span>
+          </div>
+        </div>
+
+        <div *ngIf="api_errors.ownership_status">
+                    <span class="text-danger opt-value">
+                    {{api_errors.ownership_status}}
+                    </span>
+        </div>
+      </div>
+    </div>
+
+    <!--Supplier-->
+    <div class="row align-items-center">
+      <div class="col-4"> <small><b>SUPPLIER</b></small> </div>
+      <div class="col-8">
+
+        <select class="mt-2 form-control form-control-sm opt-value" type="text" formControlName="supplier" >
+          <option *ngFor="let supplier of suppliers" value="{{supplier.id}}">{{ supplier.name }}</option>
+        </select>
+
+        <div
+          *ngIf="edit_box_form.controls['supplier'].invalid && (edit_box_form.controls['supplier'].dirty
+                        || edit_box_form.controls['supplier'].touched)"
+          class="alert">
+          <div *ngIf="edit_box_form.controls['supplier'].errors.required">
+                        <span class="text-danger opt-value">
+                            Field is required <br>
+                        </span>
+          </div>
+        </div>
+
+        <div *ngIf="api_errors.serial">
+                        <span class="text-danger opt-value">
+                        {{api_errors.supplier}}
+                        </span>
+        </div>
+      </div>
+    </div>
+
+
+    <!--PURCHASE ORDER-->
+    <div class="row align-items-center">
+      <div class="col-4"> <small><b>PO NUMBER</b></small> </div>
+      <div class="col-8">
+        <input class="mt-2 form-control form-control-sm opt-value" type="text" formControlName="purchase_order" />
+
+        <div
+          *ngIf="edit_box_form.controls['purchase_order'].invalid && (edit_box_form.controls['purchase_order'].dirty
+                            || edit_box_form.controls['purchase_order'].touched)"
+          class="alert">
+          <div *ngIf="edit_box_form.controls['purchase_order'].errors.required">
+                            <span class="text-danger opt-value">
+                                Field is required <br>
+                            </span>
+          </div>
+        </div>
+
+        <div *ngIf="api_errors.purchase_order">
+                            <span class="text-danger opt-value">
+                            {{api_errors.purchase_order}}
+                            </span>
+        </div>
+      </div>
+    </div>
+
+    <!--Capacity-->
+    <div class="row align-items-center">
+      <div class="col-4"> <small><b>CAPACITY</b></small> </div>
+      <div class="col-8">
+        <input class="mt-2 form-control form-control-sm opt-value" type="text" formControlName="capacity" />
+
+        <div
+          *ngIf="edit_box_form.controls['capacity'].invalid && (edit_box_form.controls['capacity'].dirty
+                            || edit_box_form.controls['capacity'].touched)"
+          class="alert">
+          <div *ngIf="edit_box_form.controls['capacity'].errors.required">
+                            <span class="text-danger opt-value">
+                                Field is required <br>
+                            </span>
+          </div>
+        </div>
+
+        <div *ngIf="api_errors.capacity">
+                            <span class="text-danger opt-value">
+                            {{api_errors.capacity}}
+                            </span>
+        </div>
+      </div>
+    </div>
+
+    <!--Description-->
+    <div class="row align-items-center">
+      <div class="col-4"> <small><b>DESCRIPTION</b></small> </div>
+      <div class="col-8">
+                                <textarea class="mt-2 form-control form-control-sm opt-value" rows="6" type="text" formControlName="description" >
+                                </textarea>
+
+        <div
+          *ngIf="edit_box_form.controls['description'].invalid && (edit_box_form.controls['description'].dirty
+                                    || edit_box_form.controls['description'].touched)"
+          class="alert">
+          <div *ngIf="edit_box_form.controls['description'].errors.required">
+                                    <span class="text-danger opt-value">
+                                        Field is required <br>
+                                    </span>
+          </div>
+        </div>
+
+        <div *ngIf="api_errors.description">
+                                    <span class="text-danger opt-value">
+                                    {{api_errors.description}}
+                                    </span>
+        </div>
+      </div>
+    </div>
+
+    <!--Submit Button-->
+    <div class="row justify-content-end mt-4 pr-3">
+      <app-default-button [outline]="true" text="Cancel" class="mr-4"(action)="cancel()" ></app-default-button>
+
+      <app-default-button text="Submit" ></app-default-button>
+    </div>
+
+  </form>
+
+</jw-modal>

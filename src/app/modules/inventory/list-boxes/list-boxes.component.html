@@ -1,0 +1,44 @@
+<!-- Top Section -->
+<div class="row justify-content-between mb-2 pl-4">
+    <p class="mb-2">STOCK REPORT</p>
+
+    <div>
+        <app-default-button  (click)="openExcel()"  text="Bulk Actions" class="mr-4" ></app-default-button>
+    </div>
+</div>
+
+<app-basic-table [titles]="titles" [url]="url" ></app-basic-table>
+
+
+<!-- Modals -->
+
+<!-- Move Modal -->
+<app-move-box (closeAction)="cancelModal()" (tableAction)="reloadTable()" [current_store]="current_item" ></app-move-box>
+
+<!-- Change Pay Go Modal -->
+<app-change-pay-go (tableAction)="reloadTable()" (closeAction)="cancelModal()" [current_store]="current_item" ></app-change-pay-go>
+
+<!-- Edit -->
+<app-edit-box (closeAction)="cancelModal()" (tableAction)="reloadTable()" [current_item]="current_item" ></app-edit-box>
+
+<app-bulk-actions (closeAction)='cancelModal()'></app-bulk-actions>
+
+<!-- Archive Box -->
+<jw-modal id="archive-box" width="30%">
+    <p class="mb-2">ARCHIVE BOX </p>
+
+    <h6 class="text-center">ARE YOU SURE YOU WANT TO ARCHIVE ?</h6>
+    <p class="text-center mt-1 mb-0">Box Type : {{ current_item != undefined ? current_item.box_config.name : '' }}</p>
+    <p class="text-center mt-1 mb-0">Serial Number : {{ current_item != undefined ? current_item.serial : '' }}</p>
+    <p class="text-center mt-1 mb-0">PAYGO ID : {{ current_item != undefined ? current_item.paygo_id : '' }}</p>
+
+    <!--Submit Button-->
+    <div class="col-12">
+        <div class="row justify-content-center mt-4 pr-3">
+            <app-default-button [outline]="true" text="Yes" class="mr-4"(action)="archive()" ></app-default-button>
+
+            <app-default-button text="No" (action)="cancelModal()" > </app-default-button>
+        </div>
+    </div>
+
+</jw-modal>

@@ -1,0 +1,12 @@
+<!-- Top Section -->
+<div class="row justify-content-between mb-2 pl-4">
+    <p class="mb-2">PRICE GROUPS</p>
+
+    <div>
+        <app-default-button  text="Add New" class="mr-4" (action)="openAdd()" ></app-default-button>
+    </div>
+</div>
+
+<!--Table-->
+<app-basic-table [titles]="titles" [url]="url" ></app-basic-table>
+

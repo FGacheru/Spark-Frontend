@@ -1,0 +1,290 @@
+<jw-modal id="ticket" width="30%">
+    
+    <p class="mb-2">CREATE TICKET </p>
+
+    <form  [formGroup]="ticket_form" (ngSubmit)="submitForm()">
+           
+           
+              
+
+                <div class="mt-3">
+                    <small>CUSTOMER NAME:</small>
+                 
+
+                    <ng-select formControlName="customer">
+                        <ng-option *ngFor="let customer of customers" [value]="customer.id">{{customer.name}}</ng-option>
+                     </ng-select>
+    
+    
+                     <!-- Loader -->
+                <span class="linear-background" *ngIf="customers_loading"></span>
+
+                <!-- Errors -->
+                <div
+                    *ngIf="ticket_form.controls['customer'].invalid && (ticket_form.controls['customer'].dirty 
+                    || ticket_form.controls['customer'].touched)"
+                    class="alert">
+                    <div *ngIf="ticket_form.controls['customer'].errors.required">
+                    <span class="text-danger opt-value">
+                        Field is required <br>
+                    </span>
+                    </div>
+                </div>
+
+                <div *ngIf="api_errors.customer">
+
+                    <span class="text-danger opt-value">
+                    {{api_errors.customer}}
+                    </span>
+                </div>
+
+                </div>
+
+                <div class="mt-3">
+                    <small>TICKET NO:</small>
+                 
+                   
+                    <input class="mt-2 form-control form-control-sm opt-value" type="text" formControlName="ticket_number" />
+  
+    
+    
+                     <!-- Loader -->
+                <span class="linear-background" *ngIf="users_loading"></span>
+
+                <!-- Errors -->
+                <div
+                    *ngIf="ticket_form.controls['ticket_number'].invalid && (ticket_form.controls['ticket_number'].dirty 
+                    || ticket_form.controls['ticket_number'].touched)"
+                    class="alert">
+                    <div *ngIf="ticket_form.controls['ticket_number'].errors.required">
+                    <span class="text-danger opt-value">
+                        Field is required <br>
+                    </span>
+                    </div>
+                </div>
+
+                <div *ngIf="api_errors.ticket_number">
+
+                    <span class="text-danger opt-value">
+                    {{api_errors.ticket_number}}
+                    </span>
+                </div>
+
+                </div>
+
+
+
+            <!--Date-->
+            <div class="mt-3">
+                <small>TICKET DATE</small>
+
+                <input class="mt-2 form-control form-control-sm opt-value" type="date" formControlName="reception_date" />
+
+                <!-- Errors -->
+                <div
+                    *ngIf="ticket_form.controls['reception_date'].invalid && (ticket_form.controls['reception_date'].dirty 
+                    || ticket_form.controls['reception_date'].touched)"
+                    class="alert">
+                    <div *ngIf="ticket_form.controls['reception_date'].errors.required">
+                    <span class="text-danger opt-value">
+                        Field is required <br>
+                    </span>
+                    </div>
+                </div>
+
+                <div *ngIf="api_errors.reception_date">
+                    <span class="text-danger opt-value">
+                    {{api_errors.date}}
+                    </span>
+                </div>
+            </div>
+
+
+            <!--Date-->
+            <div class="mt-3">
+                <small>TICKET CLOSURE DATE</small>
+
+                <input class="mt-2 form-control form-control-sm opt-value" type="date" formControlName="return_date" />
+
+                <!-- Errors -->
+                <div
+                    *ngIf="ticket_form.controls['return_date'].invalid && (ticket_form.controls['return_date'].dirty 
+                    || ticket_form.controls['return_date'].touched)"
+                    class="alert">
+                    <div *ngIf="ticket_form.controls['return_date'].errors.required">
+                    <span class="text-danger opt-value">
+                        Field is required <br>
+                    </span>
+                    </div>
+                </div>
+
+                <div *ngIf="api_errors.return_date">
+                    <span class="text-danger opt-value">
+                    {{api_errors.return_date}}
+                    </span>
+                </div>
+            </div>
+
+           
+           
+            <!---Description-->
+            <div class="mt-4">
+                <small>PROBLEM DESCRIPTION</small>
+
+                <textarea  cols="4" rows="5" class="mt-2 form-control form-control-sm opt-value" type="description" formControlName="problem_description" >
+                </textarea>
+
+                <!-- Errors -->
+                <div
+                    *ngIf="ticket_form.controls['problem_description'].invalid && (ticket_form.controls['problem_description'].dirty 
+                    || ticket_form.controls['problem_description'].touched)"
+                    class="alert">
+                    <div *ngIf="ticket_form.controls['problem_description'].errors.required">
+                    <span class="text-danger opt-value">
+                        Field is required <br>
+                    </span>
+                    </div>
+                </div>
+
+                <div *ngIf="api_errors.problem_description">
+                    <span class="text-danger opt-value">
+                    {{api_errors.problem_description}}
+                    </span>
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <small>TECHNICIAN ASSIGNED:</small>
+             
+               
+                <select class="mt-2 form-control form-control-sm opt-value" formControlName="technician" *ngIf="!users_loading">
+                    <option *ngFor="let user of users" value="{{user.id}}" required>{{user.full_name}}</option>
+                </select>
+
+
+                 <!-- Loader -->
+            <span class="linear-background" *ngIf="users_loading"></span>
+
+            <!-- Errors -->
+            <div
+                *ngIf="ticket_form.controls['technician'].invalid && (ticket_form.controls['technician'].dirty 
+                || ticket_form.controls['technician'].touched)"
+                class="alert">
+                <div *ngIf="ticket_form.controls['technician'].errors.required">
+                <span class="text-danger opt-value">
+                    Field is required <br>
+                </span>
+                </div>
+            </div>
+
+            <div *ngIf="api_errors.technician">
+
+                <span class="text-danger opt-value">
+                {{api_errors.technician}}
+                </span>
+            </div>
+
+            </div>
+
+
+            <!--Date-->
+            <div class="mt-3">
+                <small>SITE VISIT DATE</small>
+
+                <input class="mt-2 form-control form-control-sm opt-value" type="date" formControlName="site_visit_date" />
+
+                <!-- Errors -->
+                <div
+                    *ngIf="ticket_form.controls['site_visit_date'].invalid && (ticket_form.controls['site_visit_date'].dirty 
+                    || ticket_form.controls['site_visit_date'].touched)"
+                    class="alert">
+                    <div *ngIf="ticket_form.controls['site_visit_date'].errors.required">
+                    <span class="text-danger opt-value">
+                        Field is required <br>
+                    </span>
+                    </div>
+                </div>
+
+                <div *ngIf="api_errors.site_visit_date">
+                    <span class="text-danger opt-value">
+                    {{api_errors.site_visit_date}}
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="mt-3">
+                <small>EARNING:</small>
+             
+               
+                <input class="mt-2 form-control form-control-sm opt-value" type="text" formControlName="repair_charge" />
+  
+
+                 <!-- Loader -->
+            <span class="linear-background" *ngIf="users_loading"></span>
+
+            <!-- Errors -->
+            <div
+                *ngIf="ticket_form.controls['repair_charge'].invalid && (ticket_form.controls['repair_charge'].dirty 
+                || ticket_form.controls['repair_charge'].touched)"
+                class="alert">
+                <div *ngIf="ticket_form.controls['repair_charge'].errors.required">
+                <span class="text-danger opt-value">
+                    Field is required <br>
+                </span>
+                </div>
+            </div>
+
+            <div *ngIf="api_errors.repair_charge">
+
+                <span class="text-danger opt-value">
+                {{api_errors.repair_charge}}
+                </span>
+            </div>
+
+            </div>
+
+
+            <div class="mt-3">
+                <small>EARNING ADJUSTMENT:</small>
+             
+               
+                <input class="mt-2 form-control form-control-sm opt-value" type="text" formControlName="amount_paid" />
+  
+
+
+                 <!-- Loader -->
+            <span class="linear-background" *ngIf="users_loading"></span>
+
+            <!-- Errors -->
+            <div
+                *ngIf="ticket_form.controls['amount_paid'].invalid && (ticket_form.controls['amount_paid'].dirty 
+                || ticket_form.controls['amount_paid'].touched)"
+                class="alert">
+                <div *ngIf="ticket_form.controls['amount_paid'].errors.required">
+                <span class="text-danger opt-value">
+                    Field is required <br>
+                </span>
+                </div>
+            </div>
+
+            <div *ngIf="api_errors.amount_paid">
+
+                <span class="text-danger opt-value">
+                {{api_errors.amount_paid}}
+                </span>
+            </div>
+
+            </div>
+
+            <!--Submit Button-->
+            <div class="row justify-content-end mt-4 pr-3">
+                <app-default-button [outline]="true" text="Cancel" class="mr-4"(action)="cancel()" ></app-default-button>
+
+                <app-default-button text="Submit" ></app-default-button>    
+            </div>
+
+    </form>
+
+
+</jw-modal>

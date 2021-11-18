@@ -1,0 +1,21 @@
+
+@import "../../styles/vars";
+
+p {
+    color: $color_white;
+}
+.success {
+    background-color: $color_success;
+}
+.info {
+    background-color: $color_primary;
+}
+.warning {
+    background-color: $color_warning;
+}
+.toast-container {
+    z-index: 5; 
+    right: 0; 
+    bottom: 0;
+}
+

@@ -1,0 +1,8 @@
+<div class="card">
+    <div *ngIf="title != ''" class="card-header">
+        <h6>{{ title }}</h6>
+    </div>
+    <div class="card-body">
+        <ng-content></ng-content>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-5 col-xl-4 my-5">
+      <h1 class="display-4 text-center mb-3">
+        Reset Password
+      </h1>
+      <p class="text-muted text-center mb-5"></p>
+
+      <div *ngIf="error">{{errorMessage}}</div>
+      <form class="authentication__form" [formGroup]="resetPasswordForm" (ngSubmit)="resetPassword()">
+        <div class="form-group">
+          <div class="form__password">
+            <label class="form-label" for="password">Password</label>
+            <input aria_label="password" id="password" formControlName="password" type={{passwordType}}
+              class="form-control form-control-appended" placeholder="Enter your password" />
+            <div *ngIf="submitted && f.password.errors" class="form-invalid-feedback">
+              <div *ngIf="f.password.errors.required">Password is required</div>
+              <div *ngIf="f.password.errors.minlength">Password must be at least 8 characters</div>
+              <div *ngIf="f.password.hasError('hasNumber')">Password must have at least 1 number</div>
+              <div *ngIf="f.password.hasError('hasCapitalCase')">Password must have at least 1 capital case</div>
+              <div *ngIf="f.password.hasError('hasSmallCase')">Password must have at least 1 small case</div>
+              <div *ngIf="f.password.hasError('hasSpecialCharacters')">Password must have at least 1 special character
+              </div>
+            </div>
+            <div (click)="toggleShowPassword()" class="form-control-icon password"
+              [ngClass]="{'is--hidden': submitted && f.password.errors}">
+              <span class="">
+                <i class="fa fa-eye" *ngIf="togglePasswordShow"></i>
+                <i class="fa fa-eye-slash" *ngIf="!togglePasswordShow"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form__password">
+            <label class="form-label" for="confirm_password">Confirm Password</label>
+            <input aria_label="confirm password" id="confirm_password" formControlName="confirm_password"
+              type={{passwordType}} class="form-control form-control-appended" placeholder="Enter your password" />
+            <div (click)="toggleShowPassword()" class="form-control-icon password"
+              [ngClass]="{'is--hidden': submitted && f.password.errors}">
+              <span class="">
+                <i class="fa fa-eye" *ngIf="togglePasswordShow"></i>
+                <i class="fa fa-eye-slash" *ngIf="!togglePasswordShow"></i>
+              </span>
+            </div>
+          </div>
+          <div *ngIf="submitted && f.confirm_password.errors" class="form-invalid-feedback">
+            <div *ngIf="f.confirm_password.errors.required">Password is required</div>
+            <div *ngIf="f.confirm_password.errors.required">Password Mismatch</div>
+          </div>
+        </div>
+        <button [attr.disabled]="loading ? true: null" type="submit" class="btn btn-block btn-primary mb-3 lift">
+          <span class="spark-text has--loading" [ngClass]="{'has--loading': loading}">
+            {{ loading ? 'Loading' : 'Reset Passowrd' }}
+          </span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

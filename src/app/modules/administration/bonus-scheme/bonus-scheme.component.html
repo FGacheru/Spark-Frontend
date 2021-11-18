@@ -1,0 +1,118 @@
+<!-- Top Section -->
+<div class="row justify-content-between mb-2 pl-4">
+    <p class="mb-2"> BONUS SCHEMES </p>
+
+    <div>
+        <app-default-button  text="Add New" class="mr-4" (action)="openAdd()" ></app-default-button>
+
+    </div>
+</div>
+
+<!--Table-->
+<app-basic-table [titles]="titles" [url]="url" [data]="data"  ></app-basic-table>
+
+
+<!-- Add Item Type Modal -->
+<jw-modal id="add-spare-part" width="60%">
+
+    <p class="mb-2">ADD/EDIT SCHEMES</p>
+ 
+    <form [formGroup]="add_spare_type_form" (ngSubmit)="onSubmitAdd()" >
+        <div class="col-5">
+        <!--Name-->
+        <div>
+            <small>NAME</small>
+            <input class="mt-2 form-control form-control-sm opt-value" formControlName="part_code" />
+
+            <!-- Errors -->
+            <div
+                *ngIf="add_spare_type_form.controls['part_code'].invalid && (add_spare_type_form.controls['part_code'].dirty 
+                || add_spare_type_form.controls['part_code'].touched)"
+                class="alert">
+                <div *ngIf="add_spare_type_form.controls['part_code'].errors.required">
+                <span class="text-danger opt-value">
+                    Field is required <br>
+                </span>
+                </div>
+            </div>
+
+            <div *ngIf="api_errors.part_code">
+                <span class="text-danger opt-value">
+                {{api_errors.part_code}}
+                </span>
+            </div>
+        </div>
+
+          <!--Name-->
+          <div>
+            <small>SCHEMA ID</small>
+            <input class="mt-2 form-control form-control-sm opt-value" formControlName="part_code" />
+
+            <!-- Errors -->
+            <div
+                *ngIf="add_spare_type_form.controls['part_code'].invalid && (add_spare_type_form.controls['part_code'].dirty 
+                || add_spare_type_form.controls['part_code'].touched)"
+                class="alert">
+                <div *ngIf="add_spare_type_form.controls['part_code'].errors.required">
+                <span class="text-danger opt-value">
+                    Field is required <br>
+                </span>
+                </div>
+            </div>
+
+            <div *ngIf="api_errors.part_code">
+                <span class="text-danger opt-value">
+                {{api_errors.part_code}}
+                </span>
+            </div>
+        </div>
+
+
+        <!-- Supplier -->
+        <div class="mt-2">
+            <small>TARGET GROUP</small>
+
+            <select class="mt-2 form-control form-control-sm opt-value" formControlName="supplier" *ngIf="!supplier_loading">
+                <option *ngFor="let supplier of suppliers" value="{{supplier.id}}" required>{{supplier.name}}</option>
+            </select>
+
+            <!-- Loader -->
+            <span class="linear-background" *ngIf="supplier_loading"></span>
+
+            <!-- Errors -->
+            <div
+                *ngIf="add_spare_type_form.controls['supplier'].invalid && (add_spare_type_form.controls['supplier'].dirty 
+                || add_spare_type_form.controls['supplier'].touched)"
+                class="alert">
+                <div *ngIf="add_spare_type_form.controls['supplier'].errors.required">
+                <span class="text-danger opt-value">
+                    Field is required <br>
+                </span>
+                </div>
+            </div>
+
+            <div *ngIf="api_errors.supplier">
+
+                <span class="text-danger opt-value">
+                {{api_errors.supplier}}
+                </span>
+            </div>
+        </div>
+    </div>
+
+        <div></div>
+
+
+
+
+         <!--Submit Button-->
+         <div class="row justify-content-end mt-4 pr-3">
+            <app-default-button [outline]="true" text="Cancel" class="mr-4"(action)="cancel()" ></app-default-button>
+
+            <app-default-button text="Submit" ></app-default-button>
+            
+         </div>
+
+    </form> 
+
+</jw-modal>

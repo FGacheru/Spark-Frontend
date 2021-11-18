@@ -1,0 +1,22 @@
+<div class="card">
+    <div class="card__header has--dropdown">
+        <ul class="nav nav-tabs">
+            <li *ngFor="let item of tabbedItems; let i = index" class="nav-item">
+                <span class="nav-transparent" [ngClass]="{'active': item.active }"></span>
+                <a href="#{{item.prop}}" data-toggle="tab" class="nav-link" (click)="selectedTab(item.prop)"
+                    [ngClass]="{'active': item.active }"
+                    style="color: #535252;  font-family: 'Avenir-Heavy',Helvetica,Arial,serif">
+                    {{item.label | titlecase}}
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="card__body">
+        <div class="tab-content">
+            <div *ngFor="let item of tabbedItems; let j = index" class="tab-pane container"
+                [ngClass]="{'active': item.active}" id="{{item.prop}}">
+                <ng-content *ngIf="item.active"></ng-content>
+            </div>
+        </div>
+    </div>
+</div>

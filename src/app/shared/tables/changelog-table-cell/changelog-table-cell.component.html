@@ -1,0 +1,28 @@
+<div *ngIf="header['field'] != 'id'" class="col-12 m-0 p-0 " >
+    <div class="row">
+        <div class="col-6 pl-0"  style="background-color: #f1f1f1;">
+            <small class="p-1 text-center" >{{ cellValue("from") }}</small>
+        </div>
+            
+        <div class="col-6 pl-0">
+            <small class="p-1 text-center">{{ cellValue("to") }}</small>
+        </div>
+    </div>
+</div>
+
+<small *ngIf="header['field'] == 'id'"> {{ cellValue("id") }}</small>
+
+<div *ngIf="isAction" class="dropdown dropleft">
+    <fa-icon [icon]="faDropDown" id="dropdownMenuButton" data-toggle="dropdown"></fa-icon>
+
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div *ngFor="let action of header['actions']" class="dropdown-item" >
+            <a style="color: black;" *ngIf="isObject(action);else actionTemp" [routerLink]="[action['link']+row.id]"  >{{ action['name'] }}</a> 
+            <ng-template #actionTemp>
+                <a style="color: black;" (click)="actionDropDown($event,action)" href="#">{{ action }}</a>
+            </ng-template>
+        </div>
+
+      
+    </div>
+  </div>

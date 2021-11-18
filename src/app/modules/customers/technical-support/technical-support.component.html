@@ -1,0 +1,37 @@
+<!-- Top Section -->
+<div class="row justify-content-between mb-2 pl-4">
+    <p class="mb-2">TECHNICAL SUPPORT</p>
+
+    <div>
+        <app-default-button  text="Create New" class="mr-4" (action)="createTicket()"></app-default-button>
+        <!-- <app-default-button  text="Sync With Angaza" class="mr-4" ></app-default-button> -->
+        <app-default-button  text="Bulk Actions" class="mr-4" ></app-default-button>
+    </div>
+</div>
+
+<!-- data table -->
+<app-basic-table [titles]="titles" [url]="url" ></app-basic-table>
+
+<app-ticket (closeAction)="cancelModal()" (tableAction)="reloadTable()" [current_store]="current_item"></app-ticket>
+
+
+<app-edit-ticket (closeAction)="cancelModal()" (tableAction)="reloadTable()" [current_item]="current_item"></app-edit-ticket>
+
+<!-- Archive Box -->
+<jw-modal id="archive-box" width="30%">
+    <p class="mb-2">ARCHIVE TICKET </p>
+    
+    <h6 class="text-center">ARE YOU SURE YOU WANT TO ARCHIVE ?</h6>
+    <p class="text-center">TICKET NO:</p>
+    <p class="text-center">CUSTOMER NAME:</p>
+    
+    <!--Submit Button-->
+    <div class="col-12">
+        <div class="row justify-content-center mt-4 pr-3">
+            <app-default-button [outline]="true" text="Yes" class="mr-4"(action)="archive()" ></app-default-button>
+    
+            <app-default-button text="No" (action)="cancelModal()" > </app-default-button>    
+        </div>
+    </div>
+
+</jw-modal>

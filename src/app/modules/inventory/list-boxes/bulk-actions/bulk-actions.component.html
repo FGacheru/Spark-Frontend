@@ -1,0 +1,41 @@
+<jw-modal id="bulk_action" width="30%">
+
+  <p class="mb-2">IMPORT/EXPORT DATA</p>
+
+  <form  [formGroup]="import_form" (ngSubmit)="submitForm()">
+
+    <div class="form-group">
+
+      <label for="file">File</label>
+
+      <input
+
+        formControlName="file"
+
+        id="file"
+
+        type="file"
+
+        class="form-control"
+
+        (change)="onFileChange($event)">
+
+      <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+
+        <div *ngIf="f.file.errors.required">File is required.</div>
+
+      </div>
+
+    </div>
+
+    <!--Submit Button-->
+    <div class="row justify-content-end mt-4 pr-3">
+      <app-default-button [outline]="true" text="Cancel" class="mr-4" (action)="cancel()" ></app-default-button>
+
+      <app-default-button text="Submit" ></app-default-button>
+    </div>
+
+  </form>
+
+
+</jw-modal>

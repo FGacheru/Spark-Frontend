@@ -1,0 +1,24 @@
+// .ng-invalid .ng-touched{
+//     border: 0.1em solid red;
+//   }
+  
+//   .ng-touched .ng-valid {
+//     border: 0.1em solid green;
+// }
+
+input[type="text"],
+.form-control {
+  background: transparent;
+  border: none;
+  border-bottom: 0.9px solid grey;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+input[type="text"]:focus,
+.form-control:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-bottom: 1px solid blue;
+}

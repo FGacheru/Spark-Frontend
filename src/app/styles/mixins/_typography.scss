@@ -1,0 +1,174 @@
+@mixin typography($format: body, $weight: null, $color:null, $fontsize: null, $lineheight: null, $maxlines:0 ) {
+    font-family: sans-serif;
+    @if $maxlines > 0 {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: $maxlines;
+        -webkit-box-orient: vertical;
+    }
+
+    @if $format ==  h1 {
+        font-weight: normal;
+        font-size: 6.4rem;
+        line-height: 6.6rem;
+        letter-spacing: 0;
+        
+        @if $weight != bold and $weight != strong {
+            strong, b {
+                font-weight: bold;
+            }
+        }
+        @if $maxlines > 0 {
+			max-height: 8rem * $maxlines;
+		}
+    } @else if $format == h2 {
+        font-weight: bold;
+        font-size: 4.8rem;
+        line-height: 4.8rem;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+
+        @if $weight != bold and $weight != strong {
+            strong, b {
+                font-weight: bold;
+            }
+        }
+
+		@if $maxlines > 0 {
+			max-height: 4.8rem * $maxlines;
+		}
+    } @else if $format == h3 {
+        font-weight: 100;
+        font-size: 4.8rem;
+        line-height: 5.4rem;
+
+        @if $weight != bold and $weight != strong {
+            strong, b {
+                font-weight: bold;
+            }
+        }
+
+		@if $maxlines > 0 {
+			max-height: 4.8rem * $maxlines;
+		}
+    } @else if $format == h4 {
+        font-weight: normal;
+        font-size: 4rem;
+        line-height: 4.4rem;
+
+        @if $weight != bold and $weight != strong {
+            strong, b {
+                font-weight: bold;
+            }
+        }
+
+		@if $maxlines > 0 {
+			max-height: 4.4rem * $maxlines;
+		}
+    } @else if $format == h5 {
+        font-weight: normal;
+        font-size: 1.8rem;
+        line-height: 2.5rem;
+
+        @if $weight != bold and $weight != strong {
+            strong, b {
+                font-weight: bold;
+            }
+        }
+
+		@if $maxlines > 0 {
+			max-height: 1.8rem * $maxlines;
+		}
+    } @else if $format == h6 {
+        font-weight: bold;
+        font-size: 1.4rem;
+        line-height: 1.4rem;
+        text-transform: uppercase;
+
+        @if $weight != bold and $weight != strong {
+            strong, b {
+                font-weight: bold;
+            }
+        }
+
+		@if $maxlines > 0 {
+			max-height: 1.4rem * $maxlines;
+		}
+    } @else if $format == small {
+        font-weight: normal;
+        font-size: 1.4rem;
+        line-height: 2.3rem;
+
+        @if $weight != bold and $weight != strong {
+            strong, b {
+                font-weight: bold;
+            }
+        }
+
+		@if $maxlines > 0 {
+			max-height: 2.3rem * $maxlines;
+		}
+    } @else if $format == verysmall {
+        font-weight: normal;
+        font-size: 1.2rem;
+        line-height: inherit;
+
+        @if $weight != bold and $weight != strong {
+            strong, b {
+                font-weight: bold;
+            }
+        }
+
+		@if $maxlines > 0 {
+			max-height: 1.2rem * $maxlines;
+		}
+    } @else if $format == veryverysmall {
+        font-weight: normal;
+        font-size: 1rem;
+        line-height: inherit;
+
+        @if $weight != bold and $weight != strong {
+            strong, b {
+                font-weight: bold;
+            }
+        }
+
+		@if $maxlines > 0 {
+			max-height: 1rem * $maxlines;
+		}
+    } @else  {
+        font-weight: normal;
+        font-size: 1.6rem;
+        line-height: 2.9rem;
+
+        @if $weight != bold and $weight != strong {
+            strong, b {
+                font-weight: bold;
+            }
+        }
+
+		@if $maxlines > 0 {
+			max-height: 2.6rem * $maxlines;
+		}
+    }
+
+    @if $weight == bold or $weight == strong {
+        font-weight: bold;
+    } @else if $weight == bold {
+        font-weight: bold;
+    } @else if $weight == normal {
+        font-weight: normal;
+    }
+
+    @if $color {
+        color: $color;
+    }
+
+    @if $fontsize {
+        font-size: $fontsize;
+    }
+
+    @if $lineheight {
+        line-height: $lineheight;
+    }
+}

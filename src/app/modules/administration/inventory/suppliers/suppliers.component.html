@@ -1,0 +1,155 @@
+<!-- Top Section -->
+<div class="row justify-content-between mb-2 pl-4">
+    <p class="mb-2">SUPPLIERS</p>
+
+    <div>
+        <app-default-button  text="Add New" class="mr-4" (action)="openAdd()" ></app-default-button>
+        <app-default-button  text="Bulk Actions" class="mr-4" (action)="getTemplate()" ></app-default-button>
+    </div>
+</div>
+
+<!--Table-->
+<app-basic-table [titles]="titles" [url]="url" ></app-basic-table>
+
+
+<!-- Add Item Type Modal -->
+<jw-modal id="add-supplier-form" width="30%">
+
+    <p class="mb-2">ADD SUPPLIER</p>
+
+    <form [formGroup]="add_supplier_form" (ngSubmit)="onSubmitAdd()" >
+
+        <!--Item Type Name-->
+        <div>
+            <small>NAME</small>
+            <input class="mt-2 form-control form-control-sm opt-value" formControlName="name" />
+
+            <!-- Errors -->
+            <div
+                *ngIf="add_supplier_form.controls['name'].invalid && (add_supplier_form.controls['name'].dirty
+                || add_supplier_form.controls['name'].touched)"
+                class="alert">
+                <div *ngIf="add_supplier_form.controls['name'].errors.required">
+                <span class="text-danger opt-value">
+                    Field is required <br>
+                </span>
+                </div>
+            </div>
+
+            <div *ngIf="api_errors.name">
+                <span class="text-danger opt-value">
+                {{api_errors.name}}
+                </span>
+            </div>
+        </div>
+
+        <!--Phone-->
+        <div class="mt-2">
+            <small>PHONE</small>
+            <input class="mt-2 form-control form-control-sm opt-value" formControlName="phone" />
+
+            <!-- Errors -->
+            <div
+                *ngIf="add_supplier_form.controls['phone'].invalid && (add_supplier_form.controls['phone'].dirty
+                || add_supplier_form.controls['phone'].touched)"
+                class="alert">
+                <div *ngIf="add_supplier_form.controls['phone'].errors.required">
+                <span class="text-danger opt-value">
+                    Field is required <br>
+                </span>
+                </div>
+            </div>
+
+            <div *ngIf="api_errors.phone">
+                <span class="text-danger opt-value">
+                {{api_errors.phone}}
+                </span>
+            </div>
+        </div>
+
+        <!--Email-->
+        <div class="mt-2">
+            <small>EMAIL</small>
+            <input class="mt-2 form-control form-control-sm opt-value" formControlName="email" />
+
+            <!-- Errors -->
+            <div
+                *ngIf="add_supplier_form.controls['email'].invalid && (add_supplier_form.controls['email'].dirty
+                || add_supplier_form.controls['email'].touched)"
+                class="alert">
+                <div *ngIf="add_supplier_form.controls['email'].errors.required">
+                <span class="text-danger opt-value">
+                    Field is required <br>
+                </span>
+                </div>
+            </div>
+
+            <div *ngIf="api_errors.email">
+                <span class="text-danger opt-value">
+                {{api_errors.email}}
+                </span>
+            </div>
+        </div>
+
+               <!--Email-->
+        <div class="mt-2">
+            <small>CONTACT PERSON</small>
+            <input class="mt-2 form-control form-control-sm opt-value" formControlName="contact_person" />
+
+            <!-- Errors -->
+            <div
+                *ngIf="add_supplier_form.controls['contact_person'].invalid && (add_supplier_form.controls['contact_person'].dirty
+                || add_supplier_form.controls['contact_person'].touched)"
+                class="alert">
+                <div *ngIf="add_supplier_form.controls['contact_person'].errors.required">
+                <span class="text-danger opt-value">
+                    Field is required <br>
+                </span>
+                </div>
+            </div>
+
+            <div *ngIf="api_errors.contact_person">
+                <span class="text-danger opt-value">
+                {{api_errors.contact_person}}
+                </span>
+            </div>
+        </div>
+
+        <div class="mt-2">
+            <small>CONTACT PHONE</small>
+            <input class="mt-2 form-control form-control-sm opt-value" formControlName="contact_phone" />
+
+            <!-- Errors -->
+            <div
+                *ngIf="add_supplier_form.controls['contact_phone'].invalid && (add_supplier_form.controls['contact_phone'].dirty
+                || add_supplier_form.controls['contact_phone'].touched)"
+                class="alert">
+                <div *ngIf="add_supplier_form.controls['contact_phone'].errors.required">
+                <span class="text-danger opt-value">
+                    Field is required <br>
+                </span>
+                </div>
+            </div>
+
+            <div *ngIf="api_errors.contact_phone">
+                <span class="text-danger opt-value">
+                {{api_errors.contact_phone}}
+                </span>
+            </div>
+        </div>
+
+
+         <!--Submit Button-->
+         <div class="row justify-content-end mt-4 pr-3">
+            <app-default-button [outline]="true" text="Cancel" class="mr-4"(action)="cancel()" ></app-default-button>
+
+            <app-default-button text="Submit" ></app-default-button>
+
+         </div>
+
+    </form>
+
+</jw-modal>
+
+
+

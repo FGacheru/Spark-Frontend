@@ -1,0 +1,248 @@
+<jw-modal id="checkin" width="85%">
+    
+    <p class="mb-2">CHECK IN </p>
+
+    <form  [formGroup]="move_box_form" (ngSubmit)="submitForm()">
+            <table class="table">
+                <thead>
+                    <th>Supplier Part Code</th>
+                    <th>Date</th>
+                    <th>Supplier Name</th>
+                    <th>Part Description</th>
+                    <th>Number Received Warranty</th>
+                    <th>Number Received Non-Warranty</th>
+                    <th>Number Received Total</th>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>
+                       
+                           
+                            <ng-select formControlName="part_code"  (change)="changeType()">
+                                <ng-option *ngFor="let sparetype of spare_types" [value]="sparetype.id">{{sparetype.part_code}}</ng-option>
+                              </ng-select>
+            
+            
+                            <!-- Errors -->
+                            <div
+                                *ngIf="move_box_form.controls['part_code'].invalid && (move_box_form.controls['part_code'].dirty 
+                                || move_box_form.controls['part_code'].touched)"
+                                class="alert">
+                                <div *ngIf="move_box_form.controls['part_code'].errors.required">
+                                <span class="text-danger opt-value">
+                                    Field is required <br>
+                                </span>
+                                </div>
+                            </div>
+            
+                            <div *ngIf="api_errors.part_code">
+            
+                                <span class="text-danger opt-value">
+                                {{api_errors.part_code}}
+                                </span>
+                            </div>
+                    </td>
+                    <td>
+
+                <input class="mt-2 form-control form-control-sm opt-value" type="date" formControlName="date_of_receipt" />
+
+                <!-- Errors -->
+                <div
+                    *ngIf="move_box_form.controls['date_of_receipt'].invalid && (move_box_form.controls['date_of_receipt'].dirty 
+                    || move_box_form.controls['date_of_receipt'].touched)"
+                    class="alert">
+                    <div *ngIf="move_box_form.controls['date_of_receipt'].errors.required">
+                    <span class="text-danger opt-value">
+                        Field is required <br>
+                    </span>
+                    </div>
+                </div>
+
+                <div *ngIf="api_errors.date_of_receiptte">
+                    <span class="text-danger opt-value">
+                    {{api_errors.date_of_receipt}}
+                    </span>
+                </div>
+           
+                    </td>
+
+
+                    <td>
+           
+
+                        <input  cols="4" rows="5" class="mt-2 form-control form-control-sm opt-value" type="description" formControlName="supplier" />
+                       
+        
+                        <!-- Errors -->
+                        <div
+                            *ngIf="move_box_form.controls['supplier'].invalid && (move_box_form.controls['supplier'].dirty 
+                            || move_box_form.controls['supplier'].touched)"
+                            class="alert">
+                            <div *ngIf="move_box_form.controls['supplier'].errors.required">
+                            <span class="text-danger opt-value">
+                                Field is required <br>
+                            </span>
+                            </div>
+                        </div>
+        
+                        <div *ngIf="api_errors.supplier">
+                            <span class="text-danger opt-value">
+                            {{api_errors.supplier}}
+                            </span>
+                        </div>
+               
+                            </td>
+
+
+
+                    <td>
+           
+
+                <input  cols="4" rows="5" class="mt-2 form-control form-control-sm opt-value" type="description" formControlName="part_description" />
+               
+
+                <!-- Errors -->
+                <div
+                    *ngIf="move_box_form.controls['part_description'].invalid && (move_box_form.controls['part_description'].dirty 
+                    || move_box_form.controls['part_description'].touched)"
+                    class="alert">
+                    <div *ngIf="move_box_form.controls['part_description'].errors.required">
+                    <span class="text-danger opt-value">
+                        Field is required <br>
+                    </span>
+                    </div>
+                </div>
+
+                <div *ngIf="api_errors.part_description">
+                    <span class="text-danger opt-value">
+                    {{api_errors.part_description}}
+                    </span>
+                </div>
+       
+                    </td>
+
+                  
+
+                            <td>
+           
+
+                                <input  cols="4" rows="5" class="mt-2 form-control form-control-sm opt-value" type="number" formControlName="number_received_warranty" />
+                               
+                
+                                <!-- Errors -->
+                                <div
+                                    *ngIf="move_box_form.controls['number_received_warranty'].invalid && (move_box_form.controls['number_received_warranty'].dirty 
+                                    || move_box_form.controls['number_received_warranty'].touched)"
+                                    class="alert">
+                                    <div *ngIf="move_box_form.controls['number_received_warranty'].errors.required">
+                                    <span class="text-danger opt-value">
+                                        Field is required <br>
+                                    </span>
+                                    </div>
+                                </div>
+                
+                                <div *ngIf="api_errors.number_received_warranty">
+                                    <span class="text-danger opt-value">
+                                    {{api_errors.number_received_warranty}}
+                                    </span>
+                                </div>
+                       
+                                    </td>
+
+                                    <td>
+           
+
+                                        <input  cols="4" rows="5" class="mt-2 form-control form-control-sm opt-value" type="number" formControlName="number_received_non_warranty" />
+                                       
+                        
+                                        <!-- Errors -->
+                                        <div
+                                            *ngIf="move_box_form.controls['number_received_non_warranty'].invalid && (move_box_form.controls['number_received_non_warranty'].dirty 
+                                            || move_box_form.controls['number_received_non_warranty'].touched)"
+                                            class="alert">
+                                            <div *ngIf="move_box_form.controls['number_received_non_warranty'].errors.required">
+                                            <span class="text-danger opt-value">
+                                                Field is required <br>
+                                            </span>
+                                            </div>
+                                        </div>
+                        
+                                        <div *ngIf="api_errors.number_received_non_warranty">
+                                            <span class="text-danger opt-value">
+                                            {{api_errors.number_received_non_warranty}}
+                                            </span>
+                                        </div>
+                                        </td>
+
+                                        <td>
+        
+
+                                            <input  cols="4" rows="5" class="mt-2 form-control form-control-sm opt-value" type="number" formControlName="number_received_total" />
+                                           
+                            
+                                            <!-- Errors -->
+                                            <div
+                                                *ngIf="move_box_form.controls['number_received_total'].invalid && (move_box_form.controls['number_received_total'].dirty 
+                                                || move_box_form.controls['number_received_total'].touched)"
+                                                class="alert">
+                                                <div *ngIf="move_box_form.controls['number_received_total'].errors.required">
+                                                <span class="text-danger opt-value">
+                                                    Field is required <br>
+                                                </span>
+                                                </div>
+                                            </div>
+                            
+                                            <div *ngIf="api_errors.number_received_total">
+                                                <span class="text-danger opt-value">
+                                                {{api_errors.number_received_total}}
+                                                </span>
+                                            </div>
+                                   
+                                                </td>
+                               
+                </tr>
+                <tr>
+                     <!---Description-->
+                     <td colspan="7">
+            <div class="mt-4" cols="12">
+                <small>DESCRIPTION</small>
+
+                <textarea  rows="5" class="mt-2 form-control form-control-sm opt-value" type="description" formControlName="comment" >
+                </textarea>
+
+                <!-- Errors -->
+                <div
+                    *ngIf="move_box_form.controls['comment'].invalid && (move_box_form.controls['comment'].dirty 
+                    || move_box_form.controls['comment'].touched)"
+                    class="alert">
+                    <div *ngIf="move_box_form.controls['comment'].errors.required">
+                    <span class="text-danger opt-value">
+                        Field is required <br>
+                    </span>
+                    </div>
+                </div>
+
+                <div *ngIf="api_errors.comment">
+                    <span class="text-danger opt-value">
+                    {{api_errors.comment}}
+                    </span>
+                </div>
+            </div>
+        </td>
+    
+                </tr>
+                </tbody>
+            </table>
+           
+
+            <!--Submit Button-->
+            <div class="row justify-content-end mt-4 pr-3">
+                <app-default-button [outline]="true" text="Cancel" class="mr-4"(action)="cancel()" ></app-default-button>
+
+                <app-default-button text="Add" ></app-default-button>    
+            </div>
+
+    </form>
+
+
+</jw-modal>

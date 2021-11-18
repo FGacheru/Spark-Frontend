@@ -1,0 +1,28 @@
+<div class="col-12 d-flex justify-content-center mt-2">
+    <div class="row justify-content-center">
+        <nav aria-label="Page navigation">
+            <ul *ngIf="isPaginationActive" class="pagination">
+                    <button (click)="scrollPage(-1)" [disabled]="!hasPrev" class="btn page-link">Previous</button>
+                    <li class="page-item {{selectedPage==1?'active':''}}"><button (click)="selectPage(1)"
+                                    class="btn page-link  ">1</button></li>
+                    <button *ngIf="moreAtStart" [disabled]="hasPrev" class="btn page-link">...</button>
+        
+                    <li *ngFor="let page of pages" class="page-item {{selectedPage==page?'active':''}}"><button
+                                    class="btn page-link" (click)="selectPage(page)">{{page}}</button>
+                    </li>
+        
+                    <li class="page-item"><button *ngIf="moreAtEnd" class="btn page-link">...</button></li>
+                    <li class="page-item {{selectedPage==totalPages?'active':''}}"><button (click)="selectPage(totalPages)"
+                                    class="btn page-link  ">{{totalPages}}</button></li>
+                    <li class="page-item"><button (click)="scrollPage(1)" [disabled]="!hasNext"
+                                    class="btn page-link">Next</button>
+                    </li>
+        
+            </ul>
+        
+            <span class="item-count">
+                    {{totalItems}} Items
+            </span>
+        </nav>
+    </div>
+</div>

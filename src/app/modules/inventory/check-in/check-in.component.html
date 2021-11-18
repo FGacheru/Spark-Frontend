@@ -1,0 +1,306 @@
+<p class="mb-2">INVENTORY - INVENTORY CHECK-INS</p>
+
+<app-card>
+    <form  [formGroup]="check_in_form" (ngSubmit)="onSumbit()">
+
+        <!--First Row-->
+        <div class="row">
+            
+            <!--Box Config -->
+            <div class="col-2">
+     
+                <small>BOX CONFIGURATION</small>
+
+                <select class="mt-2 form-control form-control-sm opt-value" formControlName="box_config" *ngIf="!config_loading">
+                    <option *ngFor="let config of box_configs" value="{{config.id}}" required>{{config.name}}</option>
+                </select>
+
+                <!-- Loader -->
+                <span class="linear-background" *ngIf="config_loading"></span>
+
+                <!-- Errors -->
+                <div
+                    *ngIf="check_in_form.controls['box_config'].invalid && (check_in_form.controls['box_config'].dirty 
+                    || check_in_form.controls['box_config'].touched)"
+                    class="alert">
+                    <div *ngIf="check_in_form.controls['box_config'].errors.required">
+                    <span class="text-danger opt-value">
+                        Field is required <br>
+                    </span>
+                    </div>
+                </div>
+
+                <div *ngIf="api_errors.box_config">
+
+                    <span class="text-danger opt-value">
+                    {{api_errors.box_config}}
+                    </span>
+                </div>
+
+            </div>
+            
+            <!--store  -->
+            <div class="col-2">
+
+                <small>WAREHOUSE</small>
+
+                <select class="mt-2 form-control form-control-sm opt-value" formControlName="store" *ngIf="!store_loading">
+                    <option *ngFor="let store of stores" value="{{store.id}}" required>{{store.name}}</option>
+                </select>
+
+                <!-- Loader -->
+                <span class="linear-background" *ngIf="store_loading"></span>
+
+                <!-- Errors -->
+                <div
+                    *ngIf="check_in_form.controls['store'].invalid && (check_in_form.controls['store'].dirty 
+                    || check_in_form.controls['store'].touched)"
+                    class="alert">
+                    <div *ngIf="check_in_form.controls['store'].errors.required">
+                    <span class="text-danger opt-value">
+                        Field is required <br>
+                    </span>
+                    </div>
+                </div>
+
+                <div *ngIf="api_errors.store">
+
+                    <span class="text-danger opt-value">
+                    {{api_errors.store}}
+                    </span>
+                </div>
+
+
+            </div>
+
+              <!-- Supplier -->
+            <div class="col-2">
+                <small>SUPPLIER NAME</small>
+
+                <select class="mt-2 form-control form-control-sm opt-value" formControlName="supplier" *ngIf="!config_loading">
+                    <option *ngFor="let supplier of suppliers" value="{{supplier.id}}" required>{{supplier.name}}</option>
+                </select>
+
+                <!-- Loader -->
+                <span class="linear-background" *ngIf="supplier_loading"></span>
+
+                <!-- Errors -->
+                <div
+                    *ngIf="check_in_form.controls['supplier'].invalid && (check_in_form.controls['supplier'].dirty 
+                    || check_in_form.controls['supplier'].touched)"
+                    class="alert">
+                    <div *ngIf="check_in_form.controls['supplier'].errors.required">
+                    <span class="text-danger opt-value">
+                        Field is required <br>
+                    </span>
+                    </div>
+                </div>
+
+                <div *ngIf="api_errors.supplier">
+
+                    <span class="text-danger opt-value">
+                    {{api_errors.supplier}}
+                    </span>
+                </div>
+            </div>
+
+            <!--Pruchase Order  -->
+            <div class="col-2">
+                <small>PURCHASE ORDER</small>
+
+                <input class="mt-2 form-control form-control-sm opt-value" formControlName="purchase_order" />
+
+                <!-- Errors -->
+                <div
+                    *ngIf="check_in_form.controls['purchase_order'].invalid && (check_in_form.controls['purchase_order'].dirty 
+                    || check_in_form.controls['purchase_order'].touched)"
+                    class="alert">
+                    <div *ngIf="check_in_form.controls['purchase_order'].errors.required">
+                    <span class="text-danger opt-value">
+                        Field is required <br>
+                    </span>
+                    </div>
+                </div>
+
+                <div *ngIf="api_errors.purchase_order">
+                    <span class="text-danger opt-value">
+                    {{api_errors.purchase_order}}
+                    </span>
+                </div>
+            </div>
+
+            <!--Date-->
+            <div class="col-2">
+                <small>DATE</small>
+
+                <input class="mt-2 form-control form-control-sm opt-value" type="date" formControlName="date" />
+
+                <!-- Errors -->
+                <div
+                    *ngIf="check_in_form.controls['date'].invalid && (check_in_form.controls['date'].dirty 
+                    || check_in_form.controls['date'].touched)"
+                    class="alert">
+                    <div *ngIf="check_in_form.controls['date'].errors.required">
+                    <span class="text-danger opt-value">
+                        Field is required <br>
+                    </span>
+                    </div>
+                </div>
+
+                <div *ngIf="api_errors.date">
+                    <span class="text-danger opt-value">
+                    {{api_errors.date}}
+                    </span>
+                </div>
+            </div>
+            
+        </div>
+        <!--End of First Row-->
+
+
+        <!--Second Row-->
+        <div class="row mt-4">
+            <!--Selection Column -->
+            <div class="col-2">
+            
+
+                <!--serialized-->
+                <div class="row justify-content-between">
+                    <div class="col-8">
+                        <small class="mt-2"> SERIALIZED</small>
+                    </div>
+                    <div class="col-4 d-flex justify-content-start">
+                        <input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="serialized" (change)="toggleSerialzed()" >
+                    </div>    
+                </div>
+
+                <!--Has pay go-->
+                <div class="row justify-content-between">
+                    <div class="col-8">
+                        <small class="mt-2"> HAS PAYGO ID</small>
+                    </div>
+                    <div class="col-4 d-flex justify-content-start">
+                        <input type="checkbox" [(ngModel)]="has_pay_go" [ngModelOptions]="{standalone: true}" (change)="toggleHasPaygo()" >
+                    </div> 
+                </div>
+    
+            </div>
+
+            <!-- Pay Go Provider -->
+            <div class="col-2">
+                <small>PAYGO PROVIDER</small>
+
+                  <select class="mt-2 form-control form-control-sm opt-value" formControlName="pay_go_provider" *ngIf="!pay_go_loading">
+                    <option *ngFor="let pay_go_provider of pay_go_providers" value="{{pay_go_provider.id}}" required>{{pay_go_provider.name}}</option>
+                  </select>  
+
+                  <div *ngIf="api_errors.pay_go_provider">
+                    <span class="text-danger opt-value">
+                    {{api_errors.pay_go_provider}}
+                    </span>
+                </div>
+            </div>   
+
+               <!-- Supplier -->
+               <div class="col-2">
+                <small>No. OF BOXES </small>
+
+                <input class="mt-2 form-control form-control-sm opt-value" type="number" formControlName="number_of_boxes" />
+
+
+                <!-- Loader -->
+                <span class="linear-background" *ngIf="supplier_loading"></span>
+
+                <!-- Errors -->
+                <div
+                    *ngIf="check_in_form.controls['number_of_boxes'].invalid && (check_in_form.controls['number_of_boxes'].dirty 
+                    || check_in_form.controls['number_of_boxes'].touched)"
+                    class="alert">
+                    <div *ngIf="check_in_form.controls['number_of_boxes'].errors.required">
+                    <span class="text-danger opt-value">
+                        Field is required <br>
+                    </span>
+                    </div>
+                </div>
+
+                <div *ngIf="api_errors.number_of_boxes">
+
+                    <span class="text-danger opt-value">
+                    {{api_errors.number_of_boxes}}
+                    </span>
+                </div>
+            </div>
+
+        </div>
+        <!--End of Second Row-->
+
+        <!--Third Row-->
+        <div class="row mt-4">
+             
+            <!-- Serial Number Boxes -->
+            <div class="col-2">
+                <small>SERIAL NUMBERS</small>
+                <textarea rows="8" class="mt-2 form-control form-control-sm opt-value" type="description" formControlName="serial_numbers" >
+                </textarea>
+
+                <div *ngIf="api_errors.serial_numbers">
+                    <span class="text-danger opt-value">
+                    {{api_errors.serial_numbers}}
+                    </span>
+                </div>
+            </div>
+
+              <!-- Serial Number Boxes -->
+              <div class="col-2">
+                <small>PAYGO IDS</small>
+                <textarea  rows="8" class="mt-2 form-control form-control-sm opt-value" type="description" formControlName="pay_go_ids" >
+                </textarea>
+
+                <div *ngIf="api_errors.pay_go_ids">
+                    <span class="text-danger opt-value">
+                    {{api_errors.pay_go_ids}}
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <!--Description-->
+        <div class="col-4 ml-0 pl-0 mt-4">
+            <small>DESCRIPTION</small>
+            
+            <textarea  cols="4" rows="8" class="mt-2 form-control form-control-sm opt-value" type="description" formControlName="description" >
+            </textarea>
+
+            <!-- Errors -->
+            <div
+                *ngIf="check_in_form.controls['description'].invalid && (check_in_form.controls['description'].dirty 
+                || check_in_form.controls['description'].touched)"
+                class="alert">
+                <div *ngIf="check_in_form.controls['description'].errors.required">
+                <span class="text-danger opt-value">
+                    Field is required <br>
+                </span>
+                </div>
+            </div>
+
+            <div *ngIf="api_errors.description">
+                <span class="text-danger opt-value">
+                {{api_errors.description}}
+                </span>
+            </div>
+
+        </div>
+
+        <!--Submit Button-->
+        <div class="row justify-content-end">
+               <app-default-button [outline]="true" text="Cancel" class="mr-4"(action)="cancel()" ></app-default-button>
+
+               <app-default-button text="Submit" ></app-default-button>
+             
+        </div>
+
+    </form>
+</app-card>

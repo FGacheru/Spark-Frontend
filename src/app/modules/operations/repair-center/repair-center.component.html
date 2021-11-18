@@ -1,0 +1,15 @@
+<!-- Top Section -->
+<div class="row justify-content-between mb-2 pl-4">
+  <p class="mb-2">REPAIR CENTER MANAGEMENT</p>
+
+  <div>
+    <!-- <app-default-button  text="Add New Customer" class="mr-4" (action)="addUser()"></app-default-button> -->
+<!--     <app-default-button  text="Create New" class="mr-4" ></app-default-button>-->
+    <app-default-button  text="Bulk Actions" class="mr-4" ></app-default-button>
+  </div>
+</div>
+
+<!-- data table -->
+<app-basic-table [titles]="titles" [url]="url" ></app-basic-table>
+<app-update-repair   (closeAction)="cancelModal()" (tableAction)="reloadTable()" [current_store]="current_item"></app-update-repair>
+<app-history></app-history>
